@@ -23,11 +23,13 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import fs from "../style/Form.module.css"
 export default function BasicDatePicker() {
   const [value, setValue] = React.useState(null);
 
   return (
+    <div className={fs.form}>
+
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         label="Basic example"
@@ -38,5 +40,16 @@ export default function BasicDatePicker() {
         renderInput={(params) => <TextField {...params} />}
       />
     </LocalizationProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker
+        label="Basic example"
+        value={value}
+        onChange={(newValue) => {
+          setValue(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />
+    </LocalizationProvider>
+    </div>
   );
 }

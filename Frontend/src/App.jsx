@@ -10,8 +10,7 @@ function App() {
   return (
     <div>
       <Form/>
-      hi
-      <Test/>
+      {/* <Test/> */}
     </div>
   )
 }
