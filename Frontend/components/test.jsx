@@ -7,7 +7,7 @@ export default function test()
     
 // const axios = require("axios");
 
-// const options1 = {
+// const trains = {
 //   method: 'GET',
 //   url: 'https://irctc1.p.rapidapi.com/api/v2/trainBetweenStations',
 //   params: {fromStationCode: 'jbp', toStationCode: 'pune'},
@@ -17,7 +17,7 @@ export default function test()
 //   }
 // };
 
-// axios.request(options1).then(function (response) {
+// axios.request(trains).then(function (response) {
 //   console.log(response.data);
 // }).catch(function (error) {
 //   console.error(error);
@@ -68,25 +68,49 @@ function xmlToJson(xml) {
   // Return the converted JSON object
   return json;
 }
+// const flights = {
+//   method: 'GET',
+//   url: 'https://timetable-lookup.p.rapidapi.com/TimeTable/JLR/PNQ/20230228/',
+//   headers: {
+//     'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+//     'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
+//   }
+// };
 
 
 
-
-const options2 = {
+const airbnb = {
   method: 'GET',
-  url: 'https://timetable-lookup.p.rapidapi.com/TimeTable/JLR/PNQ/20230228/',
+  url: 'https://airbnb19.p.rapidapi.com/api/v1/searchPropertyByPlace',
+  params: {
+    id: 'ChIJ7cv00DwsDogRAMDACa2m4K8',
+    display_name: 'Delhi',
+    totalRecords: '10',
+    currency: 'INR',
+    adults: '1',
+    checkin: '2023-02-21',
+    checkout: '2023-03-09'
+  },
   headers: {
     'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
-    'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
+    'X-RapidAPI-Host': 'airbnb19.p.rapidapi.com'
   }
 };
 
-axios.request(options2).then(function (response) {
-  const json = xmlToJson(response.data);
-	console.log(json);
+axios.request(airbnb).then(function (response) {
+	console.log(response.data);
 }).catch(function (error) {
 	console.error(error);
 });
+
+
+
+// axios.request(flights).then(function (response) {
+//   const json = xmlToJson(response.data);
+// 	console.log(json);
+// }).catch(function (error) {
+// 	console.error(error);
+// });
 
 
   return <div>test</div>;
