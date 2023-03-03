@@ -10,6 +10,7 @@ function App() {
   return (
     <div>
       <Form/>
+      hi
       <Test/>
     </div>
   )
