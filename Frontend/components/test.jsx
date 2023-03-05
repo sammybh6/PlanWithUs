@@ -97,11 +97,11 @@ const airbnb = {
   }
 };
 
-axios.request(airbnb).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+// axios.request(airbnb).then(function (response) {
+// 	console.log(response.data);
+// }).catch(function (error) {
+// 	console.error(error);
+// });
 
 
 
