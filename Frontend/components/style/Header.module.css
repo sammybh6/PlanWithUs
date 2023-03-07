@@ -1,0 +1,32 @@
+.intro
+{
+    /* display: table; */
+
+    width: 100vw;
+    height: 105vh;
+    /* background: url(https://images.pexels.com/photos/7876513/pexels-photo-7876513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) center center no-repeat; */
+    /* background-color: #e5e5e5; */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.pexels.com/photos/7876513/pexels-photo-7876513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2) center center no-repeat;
+
+}
+
+.brandHeading
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Raleway", sans-serif;
+    color: #fff;
+    font-size: 82px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    text-align: center;
+}
