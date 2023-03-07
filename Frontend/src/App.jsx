@@ -4,13 +4,17 @@ import './App.css'
 import Test from '../components/test'
 import {Navigation}  from '../components/Navigation'
 import Forms from '../components/Forms'
-
+import Header from '../components/Header'
+import TravelForm from '../components/TravelForm'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div>
       <Navigation/>
+
+      <Header/>
+      <TravelForm/>
       <Forms/>
       {/* <Test/> */}
     </div>

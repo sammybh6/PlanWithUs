@@ -1,0 +1,24 @@
+.MuiOutlinedInput-notchedOutline {
+    border-color: #562B08!important;
+    outline-color: #562B08 !important;
+  }
+  
+  .MuiFilledInput-root {
+    border-bottom: 1px solid #562B08 !important;
+  }
+  
+  .MuiInput-root {
+    border-bottom: 1px solid #562B08 !important;
+  }
+
+.Mui-focused
+{
+    color: #562B08 !important;
+    border: #562B08 !important;
+    outline-color: #562B08 !important;
+}
+
+.MuiInputBase-input-MuiInput-input:focus{
+    border-color: #562B08 !important;
+    outline-color: #562B08 !important;
+}

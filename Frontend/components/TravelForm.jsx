@@ -7,23 +7,19 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import purple from "@mui/material/colors/purple";
 // import { FetchData, postData } from "../utils/REST";
 import { Button } from "@mui/material";
-export default function Forms() {
+export default function TravelForm() {
     const { register, handleSubmit } = useForm();
     const [selectedDate, handleDateChange] = React.useState(new Date());
-    const [selectedDate1, handleDateChange1] = React.useState(new Date());
 
     const submitHandler = (data) => {
-        data["DateofArrival"] = dayjs(selectedDate).format("YYYY-MM-DD");
-        data["DateofDeparture"] = dayjs(selectedDate1).format("YYYY-MM-DD");
+        data["DateOfJourney"] = dayjs(selectedDate).format("YYYY-MM-DD");
         console.log(data);
 
     };
-    const [selectedDate1, handleDateChange1] = React.useState(new Date());
-    
-    const [selectedDate2, handleDateChange2] = React.useState(new Date());
 
     const theme = createTheme({
       palette: {
@@ -36,6 +32,21 @@ export default function Forms() {
   return (
     <div>
      <form on onSubmit={handleSubmit(submitHandler)} className={fs.form}>
+        <TextField
+            variant="outlined"
+            className={fs.destination}
+            // margin="normal"
+
+            required
+            id="Source"
+            label="Source"
+            name="Source"
+            autoComplete="Source"
+            // autoFocus
+            sx={{ borderColor: '#562B08' }}
+
+            {...register("Source")}
+        />
         <TextField
             variant="outlined"
             className={fs.destination}
@@ -57,33 +68,15 @@ export default function Forms() {
             variant="standard"
             margin="normal"
             required
-            id="DateofArrival"
-            label="Date of Arrival"
-            name="DateofArrival"
-            autoComplete="DateofArrival"
+            id="DateOfJourney"
+            label="Date of Journey"
+            name="DateOfJourney"
+            autoComplete="DateOfJourney"
             value={selectedDate}
             // autoFocus
 
             onChange={(newValue) => {
               handleDateChange(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DesktopDatePicker
-            className={fs.date_of_departure}
-            variant="outlined"
-            margin="normal"
-            required
-            id="DateofDeparture"
-            label="Date of Departure"
-            // name="DateofDeparture"
-            autoComplete="DateofDeparture"
-            // autoFocus
-            value={selectedDate1}
-            onChange={(newValue) => {
-              handleDateChange1(newValue);
             }}
             renderInput={(params) => <TextField {...params} />}
           />
