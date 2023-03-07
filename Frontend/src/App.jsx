@@ -2,7 +2,6 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import Test from '../components/test'
-import Form from '../components/Form'
 import {Navigation}  from '../components/Navigation'
 import Forms from '../components/Forms'
 

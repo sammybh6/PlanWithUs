@@ -13,6 +13,9 @@ export default function Forms() {
     const submitHandler = (data) => {
         console.log(data);
     };
+    const [selectedDate1, handleDateChange1] = React.useState(new Date());
+    
+    const [selectedDate2, handleDateChange2] = React.useState(new Date());
 
   return (
     <div>
