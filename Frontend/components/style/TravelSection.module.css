@@ -1,0 +1,11 @@
+.transport
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 80vh;
+    background-color: #f9f0e5;
+    padding: 50px 200px;
+}
