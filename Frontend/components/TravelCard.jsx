@@ -17,6 +17,10 @@ import t from '../components/style/TravelCard.module.css'
 export default function TravelCard(props) {
 
   console.log(props.icon);
+  const handleClick=(event)=>
+  {
+    console.log(event);
+  }
   if(props.icon === "flight"){
 
     return (
@@ -50,7 +54,6 @@ export default function TravelCard(props) {
         width: '100%',
         height: '80%',
       }}>
-      
       <IconButton className={t.ico}>
             <DirectionsSubwayFilledIcon style={{
               color: '#ffffff',
@@ -64,6 +67,8 @@ export default function TravelCard(props) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
+          onClick={handleClick}
+          
         </CardActions>
       </Card>
       );
