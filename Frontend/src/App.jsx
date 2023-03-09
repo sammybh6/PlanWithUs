@@ -6,7 +6,7 @@ import {Navigation}  from '../components/Navigation'
 import Forms from '../components/Forms'
 import Header from '../components/Header'
 import TravelForm from '../components/TravelForm'
-import TravelSection from '../components/TravelSection'
+// import TravelSection from '../components/TravelSection'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,7 +17,7 @@ function App() {
 
       <Header/>
       <TravelForm/>
-      <TravelSection/>
+      {/* <TravelSection/> */}
       <Forms/>
       {/* <Test/> */}
     </div>

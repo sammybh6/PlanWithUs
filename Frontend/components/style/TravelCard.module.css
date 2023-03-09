@@ -35,3 +35,17 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.div {
+    height: 5rem;
+    width: 5rem;
+    margin: 3rem auto;
+    border: rgb(76, 81, 76) 5px;
+    background: rgb(74, 68, 68);
+    transition: transform .5s, box-shadow 1s;
+  }
+  
+.div:hover {
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 10px 10px rgba(54, 49, 49, 0.7);
+  }

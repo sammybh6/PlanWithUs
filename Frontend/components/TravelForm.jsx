@@ -7,7 +7,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import TravelSection from "./TravelSection";
 
 import purple from "@mui/material/colors/purple";
 // import { FetchData, postData } from "../utils/REST";
@@ -15,13 +15,13 @@ import { Button } from "@mui/material";
 export default function TravelForm() {
     const { register, handleSubmit } = useForm();
     const [selectedDate, handleDateChange] = React.useState(new Date());
-
+    const [data, setData] = React.useState([]);
     const submitHandler = (data) => {
         data["DateOfJourney"] = dayjs(selectedDate).format("YYYY-MM-DD");
         console.log(data);
-
+        setData(data);
     };
-
+    
     const theme = createTheme({
       palette: {
         primary: {
@@ -32,12 +32,11 @@ export default function TravelForm() {
     
   return (
     <div>
-     <form on onSubmit={handleSubmit(submitHandler)} className={fs.form}>
+     <form onSubmit={handleSubmit(submitHandler)} className={fs.form}>
         <TextField
             variant="outlined"
             className={fs.destination}
             // margin="normal"
-
             required
             id="Source"
             label="Source"
@@ -45,7 +44,6 @@ export default function TravelForm() {
             autoComplete="Source"
             // autoFocus
             sx={{ borderColor: '#562B08' }}
-
             {...register("Source")}
         />
         <TextField
@@ -75,7 +73,6 @@ export default function TravelForm() {
             autoComplete="DateOfJourney"
             value={selectedDate}
             // autoFocus
-
             onChange={(newValue) => {
               handleDateChange(newValue);
             }}
@@ -103,6 +100,7 @@ export default function TravelForm() {
           </Button>
         </ThemeProvider>
      </form>
+      <TravelSection data={data} />
     </div>
   )
 }
