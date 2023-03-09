@@ -7,7 +7,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import purple from "@mui/material/colors/purple";
+// import purple from "@mui/material/colors/purple";
 // import { FetchData, postData } from "../utils/REST";
 import { Button } from "@mui/material";
 export default function Forms() {
@@ -21,9 +21,6 @@ export default function Forms() {
         console.log(data);
 
     };
-    const [selectedDate1, handleDateChange1] = React.useState(new Date());
-    
-    const [selectedDate2, handleDateChange2] = React.useState(new Date());
 
     const theme = createTheme({
       palette: {
@@ -40,7 +37,6 @@ export default function Forms() {
             variant="outlined"
             className={fs.destination}
             // margin="normal"
-
             required
             id="Destination"
             label="Destination"
@@ -48,7 +44,6 @@ export default function Forms() {
             autoComplete="Destination"
             // autoFocus
             sx={{ borderColor: '#562B08' }}
-
             {...register("Destination")}
         />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -63,7 +58,6 @@ export default function Forms() {
             autoComplete="DateofArrival"
             value={selectedDate}
             // autoFocus
-
             onChange={(newValue) => {
               handleDateChange(newValue);
             }}

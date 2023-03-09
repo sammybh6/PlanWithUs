@@ -8,25 +8,42 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import Typography from '@mui/material/Typography'; 
 import { red } from '@mui/material/colors';
 import FlightIcon from '@mui/icons-material/Flight';
 import DirectionsSubwayFilledIcon from '@mui/icons-material/DirectionsSubwayFilled';
 import t from '../components/style/TravelCard.module.css'
 
 export default function TravelCard(props) {
-
+  const handleIconClicks = name => () => {
+    console.log(name);
+  }
+  const clickMef = (event) => {
+    props.data["Transport"] = "flight";
+    console.log(props.data);
+  }
+  const clickMet = (event) => {
+    props.data["Transport"] = "train";
+    console.log(props.data);
+  }
   console.log(props.icon);
+  console.log(props.data);
   if(props.icon === "flight"){
-
     return (
       <Card sx={{ maxWidth: 345 }} style={{
         backgroundColor: '#8F5A3A',
         width: '100%',
         height: '80%',
-      }}>
+      }}
+      onClick={(event) => 
+          {clickMef(event)
+          }}
+      className={t.div}
+      >
       
-        <IconButton className={t.ico}>
+        <IconButton name="flight_takeoff"
+        className={t.ico} onClick={handleIconClicks("flight_takeoff")}
+        >
             <FlightIcon style={{
               color: '#ffffff',
               fontSize: '100px',
@@ -49,7 +66,11 @@ export default function TravelCard(props) {
         backgroundColor: '#8F5A3A',
         width: '100%',
         height: '80%',
-      }}>
+      }}
+      onClick={(event) => 
+          {clickMet(event)
+          }}
+      className={t.div}>
       
       <IconButton className={t.ico}>
             <DirectionsSubwayFilledIcon style={{
