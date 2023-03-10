@@ -13,21 +13,43 @@ import { red } from '@mui/material/colors';
 import FlightIcon from '@mui/icons-material/Flight';
 import DirectionsSubwayFilledIcon from '@mui/icons-material/DirectionsSubwayFilled';
 import t from '../components/style/TravelCard.module.css'
+import axios from 'axios';
+import TrainList from './TrainList';
 
 export default function TravelCard(props) {
+  const [trainData, setTrainData] = React.useState([]);
   const handleIconClicks = name => () => {
     console.log(name);
   }
   const clickMef = (event) => {
     props.data["Transport"] = "flight";
-    console.log(props.data);
+    // console.log(props.data);
   }
   const clickMet = (event) => {
     props.data["Transport"] = "train";
-    console.log(props.data);
+    // console.log(props.data);
+
+    const trains = {
+      method: 'GET',
+      url: 'https://irctc1.p.rapidapi.com/api/v2/trainBetweenStations',
+      params: {fromStationCode: `${props.data["Source"]}`, toStationCode: `${props.data["Destination"]}`},
+      headers: {
+        'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+        'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
+      }
+    };
+
+    axios.request(trains).then(function (response) {
+      // console.log(response.data);
+      setTrainData(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
+    <TrainList data={trainData} />
+
   }
-  console.log(props.icon);
-  console.log(props.data);
+  // console.log(props.icon);
+  // console.log(props.data);
   if(props.icon === "flight"){
     return (
       <Card sx={{ maxWidth: 345 }} style={{

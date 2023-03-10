@@ -18,11 +18,13 @@ export default function TravelForm() {
     const [data, setData] = React.useState([]);
     const submitHandler = (data) => {
         data["DateOfJourney"] = dayjs(selectedDate).format("YYYY-MM-DD");
+        data["No_of_people"] = parseInt(data["No_of_people"]);
+        data["Source"] = data["Source"].toLowerCase();  
+        data["Destination"] = data["Destination"].toLowerCase();
         console.log(data);
         setData(data);
-    };
-    
-    const theme = createTheme({
+      };
+      const theme = createTheme({
       palette: {
         primary: {
           main: "#562B08",
