@@ -22,7 +22,6 @@ export default function Forms() {
 
     };
 
-    
     const theme = createTheme({
       palette: {
         primary: {

@@ -14,8 +14,8 @@ import FlightIcon from '@mui/icons-material/Flight';
 import DirectionsSubwayFilledIcon from '@mui/icons-material/DirectionsSubwayFilled';
 import t from '../components/style/TravelCard.module.css'
 import axios from 'axios';
-import TrainList from './TrainList';
-
+// import TrainList from './TrainList';
+import { useNavigate } from 'react-router-dom';
 
 function xmlToJson(xml) {
   // Create a new DOMParser object
@@ -59,11 +59,14 @@ function xmlToJson(xml) {
 }
 
 export default function TravelCard(props) {
+  const navigate = useNavigate();
+  const [flightData, setFlightData] = React.useState([]);
   const [trainData, setTrainData] = React.useState([]);
   const handleIconClicks = name => () => {
     console.log(name);
   }
   const clickMef = (event) => {
+    navigate('/flight');
     props.data["Transport"] = "flight";
     // console.log(props.data);
     const flights = {
@@ -74,14 +77,16 @@ export default function TravelCard(props) {
         'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
       }
     };
-    axios.request(flights).then(function (response) {
-      const json = xmlToJson(response.data);
-      console.log(json);
-    }).catch(function (error) {
-      console.error(error);
-    });
+  //   axios.request(flights).then(function (response) {
+  //     const json = xmlToJson(response.data);
+  //     console.log(json);
+  //   }).catch(function (error) {
+  //     console.error(error);
+  //   });
+  
   }
   const clickMet = (event) => {
+    navigate('/train');
     props.data["Transport"] = "train";
     // console.log(props.data);
 
@@ -95,12 +100,12 @@ export default function TravelCard(props) {
       }
     };
 
-    axios.request(trains).then(function (response) {
-      // console.log(response.data);
-      setTrainData(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
+    // axios.request(trains).then(function (response) {
+    //   console.log(response.data);
+    //   setTrainData(response.data);
+    // }).catch(function (error) {
+    //   console.error(error);
+    // });
     <TrainList data={trainData} />
 
   }
