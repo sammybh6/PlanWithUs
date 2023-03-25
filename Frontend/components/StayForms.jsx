@@ -9,17 +9,19 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import purple from "@mui/material/colors/purple";
 // import { FetchData, postData } from "../utils/REST";
+import StaySection from "./StaySection"
 import { Button } from "@mui/material";
-export default function Forms() {
+export default function StayForms() {
     const { register, handleSubmit } = useForm();
     const [selectedDate, handleDateChange] = React.useState(new Date());
     const [selectedDate1, handleDateChange1] = React.useState(new Date());
-
+    const [data, setData] = React.useState([]);
     const submitHandler = (data) => {
         data["DateofArrival"] = dayjs(selectedDate).format("YYYY-MM-DD");
         data["DateofDeparture"] = dayjs(selectedDate1).format("YYYY-MM-DD");
         console.log(data);
-
+        console.log(data);
+        setData(data);
     };
 
     const theme = createTheme({
@@ -103,6 +105,7 @@ export default function Forms() {
           </Button>
         </ThemeProvider>
      </form>
+     <StaySection data={data}/>
     </div>
   )
 }

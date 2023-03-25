@@ -10,15 +10,17 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography'; 
 import { red } from '@mui/material/colors';
-import FlightIcon from '@mui/icons-material/Flight';
-import DirectionsSubwayFilledIcon from '@mui/icons-material/DirectionsSubwayFilled';
+// import FlightIcon from '@mui/icons-material/Flight';
+import HotelIcon from '@mui/icons-material/Hotel';
+// import DirectionsSubwayFilledIcon from '@mui/icons-material/DirectionsSubwayFilled';
+import BungalowIcon from '@mui/icons-material/Bungalow';
 import t from '../components/style/TravelCard.module.css'
 import axios from 'axios';
 // import TrainList from './TrainList';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function TravelCard(props) {
+export default function StayCard(props) {
   const navigate = useNavigate();
   const [flightData, setFlightData] = React.useState([]);
   const [trainData, setTrainData] = React.useState([]);
@@ -27,19 +29,19 @@ export default function TravelCard(props) {
   }
   const clickMef = (event) => {
     // props.data["Transport"] = "flight";
-    navigate('/flight');
+    navigate('/hotel');
     // console.log(props.data);
     
   }
   const clickMet = (event) => {
     // props.data["Transport"] = "train";
-    navigate('/train');
+    navigate('/stay');
     // console.log(props.data);
 
   }
   // console.log(props.icon);
   // console.log(props.data);
-  if(props.icon === "flight"){
+  if(props.icon === "hotel"){
     return (
       <Card sx={{ maxWidth: 345 }} style={{
         backgroundColor: '#8F5A3A',
@@ -52,17 +54,17 @@ export default function TravelCard(props) {
       className={t.div}
       >
       
-        <IconButton name="flight_takeoff"
+        <IconButton name="hotel"
         className={t.ico} >
-            <FlightIcon style={{
+            <HotelIcon style={{
               color: '#ffffff',
               fontSize: '100px',
             }} />
           </IconButton>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            <h1 className={t.h1}>Take a Flight!</h1>
-            <p className={t.p}>Have a safe flight!</p>
+            <h1 className={t.h1}>Hotels</h1>
+            <p className={t.p}>Hotels with great deals</p>
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -83,19 +85,17 @@ export default function TravelCard(props) {
       className={t.div}>
       
       <IconButton className={t.ico}>
-            <DirectionsSubwayFilledIcon style={{
+            <BungalowIcon style={{
               color: '#ffffff',
               fontSize: '100px',
             }} />
           </IconButton>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            <h1 className={t.h1}>Take a Train!</h1>
-            <p className={t.p}>Have a safe journey!</p>
+            <h1 className={t.h1}>Stay</h1>
+            <p className={t.p}>Where you feel like your home</p>
           </Typography>
         </CardContent>
-
-        
         <CardActions disableSpacing>
         </CardActions>
       </Card>

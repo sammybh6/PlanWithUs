@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import {Navigation}  from '../components/Navigation'
-import Forms from '../components/Forms'
+import StayForms from './StayForms'
 import Header from '../components/Header'
 import TravelForm from '../components/TravelForm'
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
      <Navigation/>
       <Header/>
       <TravelForm/>
-      <Forms/>
+      <StayForms/>
     </div>
   )
 }

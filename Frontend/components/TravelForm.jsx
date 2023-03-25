@@ -8,12 +8,14 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TravelSection from "./TravelSection";
-
 import purple from "@mui/material/colors/purple";
 // import { FetchData, postData } from "../utils/REST";
 import { Button } from "@mui/material";
+import FlightList from "./FlightList";
+import TrainList from "./TrainList";
 export default function TravelForm() {
     const { register, handleSubmit } = useForm();
+    const TravelContext=React.createContext();
     const [selectedDate, handleDateChange] = React.useState(new Date());
     const [data, setData] = React.useState([]);
     const submitHandler = (data) => {
@@ -24,6 +26,10 @@ export default function TravelForm() {
         console.log(data);
         setData(data);
       };
+      <TravelContext.Provider value={data}>
+        <FlightList/>
+        <TrainList/>
+      </TravelContext.Provider>
       const theme = createTheme({
       palette: {
         primary: {

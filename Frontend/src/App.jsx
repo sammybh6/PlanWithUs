@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import Test from '../components/test'
 import {Navigation}  from '../components/Navigation'
-import Forms from '../components/Forms'
+import Forms from '../components/StayForms'
 import Header from '../components/Header'
 import TravelForm from '../components/TravelForm'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -21,8 +21,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/test" element={<Test/>}/>
-        <Route path="/flight" element={<FlightList/>}/>
+        <Route path="/flight" element={<FlightList />}/>
         <Route path="/train" element={<TrainList/>}/>
+
       </Routes>
     </BrowserRouter>
     </div>
