@@ -39,7 +39,6 @@ export default function TravelCard(props) {
     // console.log(props.data);
 
 
-
     // axios.request(trains).then(function (response) {
     //   console.log(response.data);
     //   setTrainData(response.data);
@@ -80,7 +79,7 @@ export default function TravelCard(props) {
         </CardContent>
         <CardActions disableSpacing>
         </CardActions>
-      </Card>
+      </Card >
     );
   }
   else {
@@ -107,6 +106,8 @@ export default function TravelCard(props) {
             <p className={t.p}>Have a safe journey!</p>
           </Typography>
         </CardContent>
+
+
         <CardActions disableSpacing>
         </CardActions>
       </Card>
