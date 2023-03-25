@@ -3,25 +3,6 @@ import n from "../components/style/Navigation.module.css";
 export const Navigation = (props) => {
   return (
     <nav id={n.menu} className={n.navbarDefault}>
-      {/* <div className="container">
-        <div className="navbar-header">
-          <button
-            type="button"
-            className="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#bs-example-navbar-collapse-1"
-          >
-            {" "}
-            <span className="sr-only">Toggle navigation</span>{" "}
-            <span className="icon-bar"></span>{" "}
-            <span className="icon-bar"></span>{" "}
-            <span className="icon-bar"></span>{" "}
-          </button>
-          <a className={n.navbarBrand} href="#page-top">
-            PlanWithUs
-          </a>{" "}
-        </div> */}
-
         <div className={n.navbarheader}>
         <a className={n.navbarBrand} href="#page-top">
             PlanWithUs
