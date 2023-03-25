@@ -68,7 +68,7 @@ export default function TravelCard(props) {
     // console.log(props.data);
     const flights = {
       method: 'GET',
-      url: `https://timetable-lookup.p.rapidapi.com/TimeTable/jlr/pnq/20230228/`,
+      url: `https://timetable-lookup.p.rapidapi.com/TimeTable/${props.data["Source"]}/${props.data["Destination"]}/20230428/`,
       headers: {
         'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
         'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
@@ -90,19 +90,18 @@ export default function TravelCard(props) {
       url: 'https://irctc1.p.rapidapi.com/api/v2/trainBetweenStations',
       params: {fromStationCode: `${props.data["Source"]}`, toStationCode: `${props.data["Destination"]}`},
       headers: {
-        'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+        'X-RapidAPI-Key': 'eab84aa50dmshc6837e929d1b85bp1cd023jsn0fd6a2f99ee0',
         'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
       }
     };
 
-    axios.request(trains).then(function (response) {
-      // console.log(response.data);
-      setTrainData(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
+    // axios.request(trains).then(function (response) {
+    //   console.log(response.data);
+    //   setTrainData(response.data);
+    // }).catch(function (error) {
+    //   console.error(error);
+    // });
     <TrainList data={trainData} />
-
   }
   // console.log(props.icon);
   // console.log(props.data);
@@ -120,8 +119,7 @@ export default function TravelCard(props) {
       >
       
         <IconButton name="flight_takeoff"
-        className={t.ico} onClick={handleIconClicks("flight_takeoff")}
-        >
+        className={t.ico} >
             <FlightIcon style={{
               color: '#ffffff',
               fontSize: '100px',
@@ -162,6 +160,8 @@ export default function TravelCard(props) {
             <p className={t.p}>Have a safe journey!</p>
           </Typography>
         </CardContent>
+
+        
         <CardActions disableSpacing>
         </CardActions>
       </Card>
