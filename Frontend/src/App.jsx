@@ -7,7 +7,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from '../components/Home'
 import FlightList from '../components/FlightList'
 import TrainList from '../components/TrainList'
-
+import HotelList from '../components/HotelList'
+import StayList from '../components/StayList'
 // import TravelSection from '../components/TravelSection'
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/flights" element={<FlightList />} />
           <Route path="/trains" element={<TrainList />} />
+          <Route path='/hotels' element={<HotelList />} />
+          <Route path='/stays' element={<StayList />} />
         </Routes>
       </BrowserRouter>
 
