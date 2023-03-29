@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography'; 
+import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 // import FlightIcon from '@mui/icons-material/Flight';
 import HotelIcon from '@mui/icons-material/Hotel';
@@ -29,38 +29,38 @@ export default function StayCard(props) {
   }
   const clickMef = (event) => {
     // props.data["Transport"] = "flight";
-    navigate('/hotel');
+    navigate('/hotels');
     // console.log(props.data);
-    
+
   }
   const clickMet = (event) => {
     // props.data["Transport"] = "train";
-    navigate('/stay');
+    navigate('/stays');
     // console.log(props.data);
 
   }
   // console.log(props.icon);
   // console.log(props.data);
-  if(props.icon === "hotel"){
+  if (props.icon === "hotel") {
     return (
       <Card sx={{ maxWidth: 345 }} style={{
         backgroundColor: '#8F5A3A',
         width: '100%',
         height: '80%',
       }}
-      onClick={(event) => 
-          {clickMef(event)
-          }}
-      className={t.div}
+        onClick={(event) => {
+          clickMef(event)
+        }}
+        className={t.div}
       >
-      
+
         <IconButton name="hotel"
-        className={t.ico} >
-            <HotelIcon style={{
-              color: '#ffffff',
-              fontSize: '100px',
-            }} />
-          </IconButton>
+          className={t.ico} >
+          <HotelIcon style={{
+            color: '#ffffff',
+            fontSize: '100px',
+          }} />
+        </IconButton>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             <h1 className={t.h1}>Hotels</h1>
@@ -72,24 +72,24 @@ export default function StayCard(props) {
       </Card>
     );
   }
-  else{
-      return (
+  else {
+    return (
       <Card sx={{ maxWidth: 345 }} style={{
         backgroundColor: '#8F5A3A',
         width: '100%',
         height: '80%',
       }}
-      onClick={(event) => 
-          {clickMet(event)
-          }}
-      className={t.div}>
-      
-      <IconButton className={t.ico}>
-            <BungalowIcon style={{
-              color: '#ffffff',
-              fontSize: '100px',
-            }} />
-          </IconButton>
+        onClick={(event) => {
+          clickMet(event)
+        }}
+        className={t.div}>
+
+        <IconButton className={t.ico}>
+          <BungalowIcon style={{
+            color: '#ffffff',
+            fontSize: '100px',
+          }} />
+        </IconButton>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             <h1 className={t.h1}>Stay</h1>
@@ -99,7 +99,7 @@ export default function StayCard(props) {
         <CardActions disableSpacing>
         </CardActions>
       </Card>
-      );
-      }
+    );
+  }
 
 }
