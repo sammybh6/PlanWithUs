@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios';
+import axios from 'axios';
 import { Navigation } from './Navigation';
 
 export default function HotelList() {
-    const [locationid, setLocationid] = React.useState();
-    const [hotelList,setHotelList]=React.useState();
+    const [locationid, setlocationid] = React.useState();
     const options1 = {
         method: 'GET',
         url: 'https://travel-advisor.p.rapidapi.com/locations/search',

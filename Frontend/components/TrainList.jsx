@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Navigation } from '../components/Navigation'
+import Loading from './Loading';import { Navigation } from '../components/Navigation'
 export default function TrainList(props) {
   const [trainData, setTrainData] = React.useState();
   const trains = {
@@ -37,10 +37,16 @@ export default function TrainList(props) {
   return (
 
     <div>
-      <Navigation />
-      <div>
-        
-      </div>
+      {/* <Loading /> */}
+      {
+        (trainData) ? trainData.map((train) => {
+          return (
+            <div >
+              <p>{train.train_name}</p>
+            </div>
+          )
+        }) : <Loading />
+      }
     </div>
   )
 }
