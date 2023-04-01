@@ -67,10 +67,26 @@ export default function FlightList() {
         });
     }
 
+  //   const config = {
+  //     headers: {
+  //         'Access-Control-Allow-Origin',
+  //         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36' ',
+  //     },
+  // };
+  
+  //   const url="https://www.makemytrip.com/flight/search?itinerary=DEL-BLR-27/03/2023&tripType=O&paxType=A-1_C-0_I-0&intl=false&cabinClass=E&ccde=IN&lang=eng"
+  //   console.log(url)
+  //   axios.get(url, config)
+  //       .then(res => {
+  //           const $ = cheerio.load(res.data)
+  //           const tt=$(".listingCard").text()
+  //           console.log(tt)
+  //       }).catch(err => console.error(err))
+
     return (
         <div>
             <h1>Flight List</h1>
-            {flightData}
+            {/* {flightData} */}
         </div>
     )
 }
