@@ -12,16 +12,16 @@ export default function TrainList(props) {
       'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
     }
   };
-  React.useEffect(() => {
-    getTrainData();
-  }, []);
-  const getTrainData = () => {
-    axios.request(trains).then(function (response) {
-      setTrainData(response.data.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
-  }
+  // React.useEffect(() => {
+  //   getTrainData();
+  // }, []);
+  // const getTrainData = () => {
+  //   axios.request(trains).then(function (response) {
+  //     setTrainData(response.data.data);
+  //   }).catch(function (error) {
+  //     console.error(error);
+  //   });
+  // }
   // console.log(trainData);
   return (
 
