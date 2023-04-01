@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import { Navigation } from '../components/Navigation'
 export default function TrainList(props) {
   const [trainData, setTrainData] = React.useState();
   const trains = {
@@ -12,31 +12,35 @@ export default function TrainList(props) {
       'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
     }
   };
-  React.useEffect(() => {
-    getTrainData();
-  }, []);
-  const getTrainData = () => {
-    axios.request(trains).then(function (response) {
-      setTrainData(response.data.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
-  }
+  // React.useEffect(() => {
+  //   getTrainData();
+  // }, []);
+  // const getTrainData = () => {
+  //   axios.request(trains).then(function (response) {
+  //     setTrainData(response.data.data);
+  //   }).catch(function (error) {
+  //     console.error(error);
+  //   });
+  // }
   // console.log(trainData);
+  // {
+  //   trainData && trainData.map((train) => {
+  //     return (
+  //       <div>
+  //         <h1>{train.train_name}</h1>
+  //         {/* <h1>{train.train_number}</h1> */}
+  //       </div>
+  //     )
+  //   })
+  // }
+  
   return (
 
     <div>
-      {
-        trainData && trainData.map((train) => {
-          return (
-            <div>
-              <h1>{train.train_name}</h1>
-              {/* <h1>{train.train_number}</h1> */}
-            </div>
-          )
-        })
-
-      }
+      <Navigation />
+      <div>
+        
+      </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-
+import { Navigation } from './Navigation';
 
 function xmlToJson(xml) {
     // Create a new DOMParser object
@@ -85,6 +85,7 @@ export default function FlightList() {
 
     return (
         <div>
+            <Navigation />
             <h1>Flight List</h1>
             {/* {flightData} */}
         </div>

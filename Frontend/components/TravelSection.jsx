@@ -7,7 +7,6 @@ import ts from './style/TravelSection.module.css'
 
 export default function TravelSection(props) {
 
-
   return (
 
     <div className={ts.transport}>
