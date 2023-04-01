@@ -1,13 +1,15 @@
 import React from 'react'
 import axios from 'axios';
 
+import { Navigation } from './Navigation';
+
 export default function HotelList() {
     const [locationid, setlocationid] = React.useState();
     const options1 = {
         method: 'GET',
         url: 'https://travel-advisor.p.rapidapi.com/locations/search',
         params: {
-            query: 'pattaya',
+            query: 'Jabalpur',
             limit: '30',
             offset: '0',
             units: 'km',
@@ -17,7 +19,7 @@ export default function HotelList() {
             lang: 'en_US'
         },
         headers: {
-            'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+            'X-RapidAPI-Key': 'ba35c709c4msh1cddd9faeb06c26p1d8858jsnb908a9ad561a',
             'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
         }
     };
@@ -28,36 +30,52 @@ export default function HotelList() {
     const getLocationId = () => {
         axios.request(options1).then(function (response) {
             // console.log(response.data);
-            setlocationid(response.data.data);
+            setLocationid(response.data.data[0].result_object.location_id);
         }).catch(function (error) {
             console.error(error);
         });
     }
-    console.log(locationid[0].result_object);
-    // const options = {
-    //     method: 'GET',
-    //     url: 'https://travel-advisor.p.rapidapi.com/hotels/get-details',
-    //     params: {
-    //         location_id: '10359481',
-    //         checkin: '2022-03-15',
-    //         adults: '1',
-    //         lang: 'en_US',
-    //         currency: 'USD',
-    //         nights: '2'
-    //     },
-    //     headers: {
-    //         'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
-    //         'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-    //     }
-    // };
 
-    // axios.request(options).then(function (response) {
-    //     console.log(response.data);
-    // }).catch(function (error) {
-    //     console.error(error);
-    // });
+    const lid=locationid;
+    console.log(lid);
+    const options = {
+        method: 'GET',
+        url: 'https://travel-advisor.p.rapidapi.com/hotels/get-details',
+        params: {
+            location_id: lid,
+            checkin: '2023-04-15',
+            adults: '1',
+            lang: 'en_US',
+            currency: 'INR',
+            nights: '2'
+        },
+        headers: {
+            'X-RapidAPI-Key': 'ba35c709c4msh1cddd9faeb06c26p1d8858jsnb908a9ad561a',
+            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+        }
+    };
+
+    React.useEffect(()=>{
+        getHotelList();
+    },[])
+    const getHotelList=()=>{
+        axios.request(options).then(function (response) {
+            console.log(response.data);
+            setHotelList(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+    console.log(hotelList);
+
     return (
         <div>
+            <Navigation/>
+            {hotelList && hotelList.data.map((hotel)=>{
+                return(
+                    <h1>{hotel.name}</h1>
+                )
+            })}
         </div>
     )
 }
