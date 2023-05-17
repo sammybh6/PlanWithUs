@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import Loading from './Loading';import { Navigation } from '../components/Navigation'
+import TravelCard from './TravelCard';
+import TravelListCard from './TravelListCard';
+
 export default function TrainList(props) {
   const [trainData, setTrainData] = React.useState();
   const trains = {
@@ -12,16 +15,16 @@ export default function TrainList(props) {
       'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
     }
   };
-  React.useEffect(() => {
-    getTrainData();
-  }, []);
-  const getTrainData = () => {
-    axios.request(trains).then(function (response) {
-      setTrainData(response.data.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
-  }
+  // React.useEffect(() => {
+  //   getTrainData();
+  // }, []);
+  // const getTrainData = () => {
+  //   axios.request(trains).then(function (response) {
+  //     setTrainData(response.data.data);
+  //   }).catch(function (error) {
+  //     console.error(error);
+  //   });
+  // }
   // console.log(trainData);
   // {
   //   trainData && trainData.map((train) => {
@@ -36,9 +39,9 @@ export default function TrainList(props) {
   
   return (
 
-    <div>
+    <div >
       {/* <Loading /> */}
-      {
+      {/* {
         (trainData) ? trainData.map((train) => {
           return (
             <div >
@@ -46,7 +49,8 @@ export default function TrainList(props) {
             </div>
           )
         }) : <Loading />
-      }
+      } */}
+      <TravelListCard/>
     </div>
   )
 }
