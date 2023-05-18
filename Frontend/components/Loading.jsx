@@ -9,33 +9,30 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import LinearProgress from "@mui/material/LinearProgress";
 
-const data = [
-    {
-        src:
-            "https://i.ytimg.com/vi/pLqipJNItIo/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBkklsyaw9FxDmMKapyBYCn9tbPNQ",
-        title: "Don Diablo @ Tomorrowland",
-        channel: "Don Diablo"
-    },
-    {
-        src:
-            "https://i.ytimg.com/vi/_Uu12zY01ts/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCpX6Jan2rxrCAZxJYDXppTP4MoQA",
-        title: "Queen - Greatest Hits",
-        channel: "Queen Official"
-    },
-    {
-        src:
-            "https://i.ytimg.com/vi/kkLk2XWMBf8/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLB4GZTFu1Ju2EPPPXnhMZtFVvYBaw",
-        title: "Promises (Official Video)",
-        channel: "Calvin Harris"
-    }
-];
+// const data = [
+//     {
+//         src:
+//             "https://i.ytimg.com/vi/pLqipJNItIo/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBkklsyaw9FxDmMKapyBYCn9tbPNQ",
+//         title: "Don Diablo @ Tomorrowland",
+//         channel: "Don Diablo"
+//     },
+//     {
+//         src:
+//             "https://i.ytimg.com/vi/_Uu12zY01ts/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCpX6Jan2rxrCAZxJYDXppTP4MoQA",
+//         title: "Queen - Greatest Hits",
+//         channel: "Queen Official"
+//     },
+//     {
+//         src:
+//             "https://i.ytimg.com/vi/kkLk2XWMBf8/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLB4GZTFu1Ju2EPPPXnhMZtFVvYBaw",
+//         title: "Promises (Official Video)",
+//         channel: "Calvin Harris"
+//     }
+// ];
 
-export default function App() {
+export default function Loading() {
     const [loading, setLoading] = useState({
-        button: false,
         circular: false,
-        linear: false,
-        skeleton: false
     });
     const clickHandler = (type) => {
         setLoading({ ...loading, [type]: true });
@@ -102,7 +99,8 @@ const CircularLoading = () => (
                 left: "50%",
                 top: "50%",
                 transform: "translate(-50%, -50%)",
-                zIndex: 2
+                zIndex: 2,
+                color: '#8d5628'
             }}
         />
         <DisabledBackground />

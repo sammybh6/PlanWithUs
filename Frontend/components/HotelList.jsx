@@ -1,10 +1,11 @@
 import React from 'react'
 import axios from 'axios';
-
+import Loading from './Loading';
 import { Navigation } from './Navigation';
 
 export default function HotelList() {
-    const [locationid, setlocationid] = React.useState();
+    const [locationid, setLocationId] = React.useState();
+    const [hotelList, setHotelList] = React.useState();
     const options1 = {
         method: 'GET',
         url: 'https://travel-advisor.p.rapidapi.com/locations/search',
@@ -30,13 +31,13 @@ export default function HotelList() {
     const getLocationId = () => {
         axios.request(options1).then(function (response) {
             // console.log(response.data);
-            setLocationid(response.data.data[0].result_object.location_id);
+            setLocationId(response.data.data[0].result_object.location_id);
         }).catch(function (error) {
             console.error(error);
         });
     }
 
-    const lid=locationid;
+    const lid = locationid;
     console.log(lid);
     const options = {
         method: 'GET',
@@ -55,10 +56,10 @@ export default function HotelList() {
         }
     };
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         getHotelList();
-    },[])
-    const getHotelList=()=>{
+    }, [])
+    const getHotelList = () => {
         axios.request(options).then(function (response) {
             console.log(response.data);
             setHotelList(response.data);
@@ -70,12 +71,15 @@ export default function HotelList() {
 
     return (
         <div>
-            <Navigation/>
-            {hotelList && hotelList.data.map((hotel)=>{
-                return(
-                    <h1>{hotel.name}</h1>
+            <Navigation />
+            {(hotelList) ? hotelList.map((hotel) => {
+                return (
+                    <div>
+                        <h1>{hotel.name}</h1>
+                    </div>
                 )
-            })}
+            }) : <Loading />
+            }
         </div>
     )
 }
