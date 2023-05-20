@@ -10,6 +10,7 @@ const PackageSchema = new mongoose.Schema({
     },
     email: {
         type: String,
+        unique: true,
         match: [
             /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             'Please add a valid email'
@@ -35,3 +36,4 @@ const PackageSchema = new mongoose.Schema({
 
 })
 
+module.exports = mongoose.model("Package", PackageSchema);
