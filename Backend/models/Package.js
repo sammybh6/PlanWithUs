@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const slugify = require('slugify')
 
 const PackageSchema = new mongoose.Schema({
     name: {
@@ -17,6 +18,7 @@ const PackageSchema = new mongoose.Schema({
         ],
         required: [true, 'Please add an email']
     },
+    slug: String,
     modeOfTransport: {
         type: String,
         required: [true, 'Please add a mode of transport'],
@@ -34,6 +36,12 @@ const PackageSchema = new mongoose.Schema({
         ]
     },
 
+})
+
+// Create package slug from the name
+PackageSchema.pre('save', function (next) {
+    this.slug = slugify(this.name, { lower: true });
+    next();
 })
 
 module.exports = mongoose.model("Package", PackageSchema);
