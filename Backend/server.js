@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
+const errorHandler = require('./middleware/error')
 
 dotenv.config({ path: './config/config.env' });
 
@@ -23,6 +24,8 @@ app.use(bodyParser.json());
 // routes has been mounted
 app.use('/api/v1/package', routes);
 
+
+app.use(errorHandler);
 // app.get('/package', (req, res) => {
 //     res.send('Hello from the server got');
 // });
