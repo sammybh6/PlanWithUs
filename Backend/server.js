@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
+const bodyParser = require('body-parser');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -14,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 //body parser
-app.use(express.json());
+app.use(bodyParser.json());
 
 // app.post('/package', (req, res) => {
 //     res.send('Hello from the server posted');

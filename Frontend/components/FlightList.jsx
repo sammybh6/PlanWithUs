@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import { Navigation } from './Navigation';
+
 
 function xmlToJson(xml) {
     // Create a new DOMParser object
@@ -53,19 +53,19 @@ export default function FlightList() {
             'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
         }
     };
-    React.useEffect(() => {
-        getFlightData();
-    }, [])
-    const getFlightData = () => {
+    // React.useEffect(() => {
+    //     getFlightData();
+    // }, [])
+    // const getFlightData = () => {
 
-        axios.request(flights).then(function (response) {
-            const json = xmlToJson(response.data);
-            console.log(json);
-            setFlightData(json);
-        }).catch(function (error) {
-            console.error(error);
-        });
-    }
+    //     axios.request(flights).then(function (response) {
+    //         const json = xmlToJson(response.data);
+    //         console.log(json);
+    //         setFlightData(json);
+    //     }).catch(function (error) {
+    //         console.error(error);
+    //     });
+    // }
 
   //   const config = {
   //     headers: {
@@ -85,7 +85,7 @@ export default function FlightList() {
 
     return (
         <div>
-            <Navigation />
+            {/* <Navigation /> */}
             <h1>Flight List</h1>
             {/* {flightData} */}
         </div>

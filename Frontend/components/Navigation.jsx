@@ -1,5 +1,6 @@
 import React from "react";
 import n from "../components/style/Navigation.module.css";
+import LoginModal from "./LoginModal";
 export const Navigation = (props) => {
   return (
     <nav id={n.menu} className={n.navbarDefault}>
@@ -15,40 +16,27 @@ export const Navigation = (props) => {
         >
           <ul className={n.side}>
             <li>
-              <a href="#features" >
-                Features
+              <a href="Flights" >
+
+                Flights
               </a>
             </li>
             <li>
-              <a href="#about" >
-                About
+              <a href="trains" >
+                Trains
               </a>
             </li>
             <li>
-              <a href="#services" >
-                Services
+              <a href="hotels" >
+                Hotels
               </a>
             </li>
             <li>
-              <a href="#portfolio" >
-                Gallery
+              <a href="stays" >
+                AirBnb
               </a>
             </li>
-            <li>
-              <a href="#testimonials" >
-                Testimonials
-              </a>
-            </li>
-            <li>
-              <a href="#team" >
-                Team
-              </a>
-            </li>
-            <li>
-              <a href="#contact" >
-                Contact
-              </a>
-            </li>
+            <LoginModal/>
           </ul>
         </div>
       </div>

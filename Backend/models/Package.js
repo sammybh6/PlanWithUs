@@ -14,7 +14,8 @@ const PackageSchema = new mongoose.Schema({
             /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             'Please add a valid email'
         ],
-        required: [true, 'Please add an email']
+        required: [true, 'Please add an email'],
+        
     },
     modeOfTransport: {
         type: String,
@@ -35,3 +36,4 @@ const PackageSchema = new mongoose.Schema({
 
 })
 
+module.exports = mongoose.model('Package', PackageSchema)
