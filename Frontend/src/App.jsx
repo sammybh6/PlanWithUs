@@ -9,6 +9,7 @@ import FlightList from '../components/FlightList'
 import TrainList from '../components/TrainList'
 import HotelList from '../components/HotelList'
 import StayList from '../components/StayList'
+import GoogleLogin from '../components/GoogleLogin'
 // import TravelSection from '../components/TravelSection'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path='/google' element={<GoogleLogin />} />
           <Route path="/test" element={<Test />} />
           <Route path="/flights" element={<FlightList />} />
           <Route path="/trains" element={<TrainList />} />

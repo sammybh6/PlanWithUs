@@ -10,7 +10,7 @@ import RegisterModal from './RegisterModal';
 
 export default function LoginModal() {
   const [open, setOpen] = React.useState(false);
-  const [regOpen,setRegOpen]=React.useState(false);
+  const [regOpen, setRegOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -19,10 +19,28 @@ export default function LoginModal() {
     setOpen(false);
   };
 
-  const handleReg=()=>{
+  const handleReg = () => {
     setRegOpen(true);
     handleClose();
   }
+
+  const getGoogleOAuthURL = () => {
+    const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth'
+    const options = {
+      redirect_uri: 'http://localhost:3000/google',
+      client_id: '445329694262-7q9hot08cm22ujqr8vlj1ipoudiodmlk.apps.googleusercontent.com',
+      access_type: 'offline',
+      response_type: 'code',
+      prompt: 'consent',
+      scope: [
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email',
+      ].join(' '),
+    }
+    const qs = new URLSearchParams(options)
+    return `${rootUrl}?${qs.toString()}`
+  }
+
 
   return (
     <div>
@@ -70,10 +88,13 @@ export default function LoginModal() {
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Login</Button>
           <Button onClick={handleReg}>Register</Button>
-          
+          <Button onClick={() => {
+            window.location.assign(getGoogleOAuthURL())
+          }
+          }>Signin with google</Button>
         </DialogActions>
       </Dialog>
-      <RegisterModal isOpen={regOpen} regClose={()=>{setRegOpen(false)}}/>
+      <RegisterModal isOpen={regOpen} regClose={() => { setRegOpen(false) }} />
     </div>
   );
 }
