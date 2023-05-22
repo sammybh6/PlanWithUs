@@ -23,6 +23,8 @@ app.use(bodyParser.json());
 // });
 // routes has been mounted
 app.use('/api/v1/package', routes);
+app.use('/api/v1/stay' , require('./routes/stay'));
+app.use('/api/v1/transport' , require('./routes/transport'));
 
 
 app.use(errorHandler);
