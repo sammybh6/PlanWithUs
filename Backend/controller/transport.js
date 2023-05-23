@@ -11,7 +11,16 @@ exports.createTransport= asyncHandler(async(req,res,next)=>{
 })
 
 exports.getTransports=asyncHandler(async(req,res,next)=>{
-    const Transports=await Transport.find();
+    let query;
+    if(req.params.id)
+    {
+        query= Transport.find(req.params.id)
+    }
+    else
+    {
+        query= Transport.find()
+    }
+    const Transports=await query;
     res.status(200).json({
         success:true,
         data:Transports

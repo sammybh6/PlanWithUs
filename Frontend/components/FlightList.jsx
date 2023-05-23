@@ -88,6 +88,23 @@ export default function FlightList() {
             {/* <Navigation /> */}
             <h1>Flight List</h1>
             {/* {flightData} */}
+            <div id="g_id_onload"
+                data-client_id="445329694262-7q9hot08cm22ujqr8vlj1ipoudiodmlk.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="redirect"
+                data-login_uri="http://localhost:3000/google"
+                data-callback="handleLogin"
+                data-auto_prompt="false">
+            </div>
+
+            <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="outline"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left">
+            </div>
         </div>
     )
 }

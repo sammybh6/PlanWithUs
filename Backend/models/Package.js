@@ -29,7 +29,6 @@ const PackageSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Stay'
     },
-
 })
 
 // Create package slug from the name

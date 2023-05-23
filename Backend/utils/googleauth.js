@@ -1,5 +1,6 @@
 const axios = require('axios')
 const express = require('express')
+const {OAuth2Client} = require('google-auth-library');
 
 
 
@@ -27,7 +28,33 @@ async function getGoogleOAuthToken(code) {
 
 exports.googleLoginCallBack = async (code) => {
     const data = await getGoogleOAuthToken(code)
-    console.log(data)
+
+    if(data)
+    {
+
+        console.log(data.id_token)
+        const { id_token } = data
+
+    const client = new OAuth2Client(process.env.CLIENT_ID);
+
+    async function verify() {
+    const ticket = await client.verifyIdToken({
+        idToken: id_token,
+        audience: process.env.CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+        // Or, if multiple clients access the backend:
+        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    });
+    const payload = ticket.getPayload();
+    const userid = payload['sub'];
+    // If request specified a G Suite domain:
+    // const domain = payload['hd'];
+    console.log(payload)
+    }
+    verify().catch(console.error);
+    }
+    
+    
+
 }
 
-// module.exports = googleLoginCallBack;
+

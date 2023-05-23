@@ -10,8 +10,18 @@ exports.createStay= asyncHandler(async(req,res,next)=>{
     })
 })
 
+
 exports.getStays=asyncHandler(async(req,res,next)=>{
-    const stays=await Stay.find();
+    let query;
+    if(req.params.id)
+    {
+        query= Stay.find(req.params.id)
+    }
+    else
+    {
+        query= Stay.find()
+    }
+    const stays=await query;
     res.status(200).json({
         success:true,
         data:stays
