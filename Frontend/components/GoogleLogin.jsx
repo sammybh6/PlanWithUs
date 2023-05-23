@@ -14,7 +14,6 @@ export default function GoogleLogin() {
         const res = await axios.post('http://localhost:8000/api/v1/auth', {
             code: code
         })
-
         // window.location.assign('/')
     }
 }
