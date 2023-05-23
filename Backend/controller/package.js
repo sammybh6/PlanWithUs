@@ -13,7 +13,7 @@ exports.createPackages = asyncHandler(async (req, res, next) => {
     const packages = await Package.create(req.body);
     res.status(201).json({
         success: true,
-        data: package
+        data: packages
     });
 
 });
@@ -27,15 +27,15 @@ exports.getPackages = asyncHandler(async (req, res, next) => {
 
     if(req.params.stayId)
     {
-        query= Package.find({ stayMode: req.params.stayId})
+        query= Package.find({ stayMode: req.params.stayId}).populate('stayMode')
     }
     else if(req.params.transportId)
     {
-        query= Package.find({ modeOfTransport: req.params.transportId})
+        query= (await Package.find({ modeOfTransport: req.params.transportId})).populate('modeOfTransport')
     }
     else
     {
-        query= Package.find();
+        query= Package.find().populate('stayMode').populate('modeOfTransport')
     }
     const packages = await query;
     res.status(200).json({

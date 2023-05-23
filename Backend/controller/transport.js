@@ -3,10 +3,10 @@ const asyncHandler = require('../middleware/async')
 const Transport=require('../models/Transport')
 
 exports.createTransport= asyncHandler(async(req,res,next)=>{
-    const Transport=await Transport.create(req.body);
+    const transports=await Transport.create(req.body);
     res.status(201).json({
         success:true,
-        data:Transport
+        data:transports
     })
 })
 
@@ -20,9 +20,9 @@ exports.getTransports=asyncHandler(async(req,res,next)=>{
     {
         query= Transport.find()
     }
-    const Transports=await query;
+    const transports=await query;
     res.status(200).json({
         success:true,
-        data:Transports
+        data:transports
     })
 })

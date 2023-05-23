@@ -24,16 +24,16 @@ const StaySchema = new mongoose.Schema({
     },
     stayPrice: {
         type: Number,
-        required: [true, 'Please add a stay price']
+        // required: [true, 'Please add a stay price']
     },
     checkInDate: {
         type: Date,
         default: Date.now,
-        required: [true, 'Please add a check in date']
+        // required: [true, 'Please add a check in date']
     },
     checkOutDate: {
         type: Date,
-        required: [true, 'Please add a check out date']
+        // required: [true, 'Please add a check out date']
     },
     noOfRooms: {
         type: Number,
