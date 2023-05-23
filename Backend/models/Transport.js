@@ -34,6 +34,7 @@ const TransportSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'Please add a number of seats']
     }
+    
 })
 
 module.exports = mongoose.model("Transport", TransportSchema)

@@ -15,5 +15,6 @@ export default function GoogleLogin() {
             code: code
         })
         // window.location.assign('/')
+        window.location.assign('/')
     }
 }

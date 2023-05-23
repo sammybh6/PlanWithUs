@@ -7,6 +7,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import RegisterModal from './RegisterModal';
+import gs from './style/LoginModal.module.css'
+
 
 export default function LoginModal() {
   const [open, setOpen] = React.useState(false);
@@ -59,11 +61,10 @@ export default function LoginModal() {
         Login
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>PlanWithUs</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Login to PlanWithUs
           </DialogContentText>
           <TextField
             autoFocus
@@ -87,12 +88,23 @@ export default function LoginModal() {
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Login</Button>
-          <Button onClick={handleReg}>Register</Button>
-          <Button onClick={() => {
+          <Button onClick={handleReg}>Register</Button><br/>
+          
+          {/* <ReactGoogleButton
+            type='dark'
+            onClick={() => {
+              window.location.assign(getGoogleOAuthURL())
+            }
+            }
+          /> */}
+          
+          <button onClick={() => {
             window.location.assign(getGoogleOAuthURL())
-          }
-          }>Signin with google</Button>
+          }} className={gs.logbtn} >
+              Sign in with Google
+        </button>
         </DialogActions>
+        
       </Dialog>
       <RegisterModal isOpen={regOpen} regClose={() => { setRegOpen(false) }} />
     </div>
