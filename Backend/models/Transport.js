@@ -11,11 +11,11 @@ const TransportSchema = new mongoose.Schema({
     },
     transportSource: {
         type: String,
-        required: [true, 'Please add a transport source']
+        // required: [true, 'Please add a transport source']
     },
     transportType: {
         type: String,
-        required: [true, 'Please add a transport type'],
+        // required: [true, 'Please add a transport type'],
         enum: [
             'Air',
             'Train'
@@ -23,16 +23,16 @@ const TransportSchema = new mongoose.Schema({
     },
     transportPrice: {
         type: Number,
-        required: [true, 'Please add a transport price']
+        // required: [true, 'Please add a transport price']
     },
     departureDate: {
         type: Date,
         default: Date.now,
-        required: [true, 'Please add a departure date']
+        // required: [true, 'Please add a departure date']
     },
     noOfSeats: {
         type: Number,
-        required: [true, 'Please add a number of seats']
+        // required: [true, 'Please add a number of seats']
     }
     
 })
