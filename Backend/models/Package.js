@@ -37,4 +37,19 @@ PackageSchema.pre('save', function (next) {
     next();
 })
 
+// Cascade delete stays when a package is deleted
+PackageSchema.pre('remove', async function (next) {
+    await this.model('Stay').deleteMany({
+        package: this._id
+    });
+    next();
+})
+
+// PackageSchema.pre('remove', async function (next) {
+//     await this.model('Stay').deleteMany({
+//         package: this._id
+//     });
+//     next();
+// })
+
 module.exports = mongoose.model("Package", PackageSchema);

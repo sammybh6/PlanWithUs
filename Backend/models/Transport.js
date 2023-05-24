@@ -33,8 +33,12 @@ const TransportSchema = new mongoose.Schema({
     noOfSeats: {
         type: Number,
         // required: [true, 'Please add a number of seats']
+    },
+    package: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Package'
     }
-    
+
 })
 
 module.exports = mongoose.model("Transport", TransportSchema)

@@ -39,7 +39,12 @@ const StaySchema = new mongoose.Schema({
         type: Number,
         // required: [true, 'Please add a number of rooms']
     },
+    package: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Package'
+    }
 })
+
 
 
 module.exports = mongoose.model("Stay", StaySchema)
