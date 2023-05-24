@@ -25,17 +25,14 @@ exports.createPackages = asyncHandler(async (req, res, next) => {
 exports.getPackages = asyncHandler(async (req, res, next) => {
     let query;
 
-    if(req.params.stayId)
-    {
-        query= Package.find({ stayMode: req.params.stayId})
+    if (req.params.stayId) {
+        query = Package.find({ stayMode: req.params.stayId })
     }
-    else if(req.params.transportId)
-    {
-        query= Package.find({ modeOfTransport: req.params.transportId})
+    else if (req.params.transportId) {
+        query = Package.find({ modeOfTransport: req.params.transportId })
     }
-    else
-    {
-        query= Package.find();
+    else {
+        query = Package.find();
     }
     const packages = await query;
     res.status(200).json({
