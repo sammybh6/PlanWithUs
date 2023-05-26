@@ -1,7 +1,7 @@
 const Package = require('../models/Package');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async')
-
+const Stay = require('../models/Stay')
 
 
 
@@ -24,12 +24,9 @@ exports.createPackages = asyncHandler(async (req, res, next) => {
 
 exports.getPackages = asyncHandler(async (req, res, next) => {
     let query;
-
-    if (req.params.stayId) {
-        query = Package.find({ stayMode: req.params.stayId }).populate('stayMode')
-    }
-    else if (req.params.transportId) {
-        query = (await Package.find({ modeOfTransport: req.params.transportId })).populate('modeOfTransport')
+    if(req.params.id)
+    {
+        query=Package.findById(req.params.id).populate('stayMode').populate('modeOfTransport')
     }
     else {
         query = Package.find().populate('stayMode').populate('modeOfTransport')
@@ -55,13 +52,14 @@ exports.updatePackage = asyncHandler(async (req, res, next) => {
 
 exports.deletePackage = asyncHandler(async (req, res, next) => {
 
-    const package = await Package.findById(req.params.id);
-    if (!package) {
+    const packages= await Package.findById(req.params.id);
+    if (!packages) {
         return next(new ErrorResponse(`Package not found with id of ${req.params.id}`, 404))
-    }
-    package.remove();
-    next();
+    }   
 
+    const stay = await Stay.deleteMany({ package: req.params.id });
+    await stay.remove();
+    
     res.status(200).json({ success: true, data: {} })
 });
 

@@ -5,15 +5,22 @@ const Package = require('../models/Package')
 
 exports.createStay = asyncHandler(async (req, res, next) => {
     req.body.package = req.params.packageId;
-    const package = Package.findById(req.params.packageId);
+    console.log(req.body.package);
+    const package =await  Package.findById(req.params.packageId);
     if (!package) {
+
         console.log('package not present.')
     }
-    const stay = Stay.create(req.body)
+    const stay = await Stay.create(req.body);
+    //update the package
+    package.stayMode= (stay._id);
+    
+    await package.save();
     res.status(201).json({
         success: true,
         data: stay
     })
+
 })
 
 

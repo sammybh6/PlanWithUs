@@ -28,8 +28,9 @@ const PackageSchema = new mongoose.Schema({
     stayMode: {
         type: mongoose.Schema.ObjectId,
         ref: 'Stay'
-    },
+    }
 })
+
 
 // Create package slug from the name
 PackageSchema.pre('save', function (next) {
@@ -39,11 +40,11 @@ PackageSchema.pre('save', function (next) {
 
 // Cascade delete stays when a package is deleted
 PackageSchema.pre('remove', async function (next) {
-    await this.model('Stay').deleteMany({
-        package: this._id
-    });
+    console.log(`Stays being removed from package ${this._id}`);
+    await this.model('Stay').deleteMany({ package: this._id });
     next();
 })
+
 
 // PackageSchema.pre('remove', async function (next) {
 //     await this.model('Stay').deleteMany({
