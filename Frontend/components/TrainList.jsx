@@ -44,9 +44,7 @@ export default function TrainList(props) {
       {/* {
         (trainData) ? trainData.map((train) => {
           return (
-            <div >
-              <p>{train.train_name}</p>
-            </div>
+            <TravelListCard train={train} />
           )
         }) : <Loading />
       } */}

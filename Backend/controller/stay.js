@@ -23,7 +23,6 @@ exports.createStay = asyncHandler(async (req, res, next) => {
 
 })
 
-
 exports.getStays = asyncHandler(async (req, res, next) => {
     let query;
     if (req.params.id) {

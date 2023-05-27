@@ -35,19 +35,13 @@ exports.login = asyncHandler(async (req, res, next) => {
     if (!user) {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
-    sendTokenResponse(user, 200, res);
     // Check if password matches
     const isMatch = await user.matchPassword(password);
     if (!isMatch) {
         return next(new ErrorResponse('Invalid credentials', 401));
     }
-
-    const token = user.getSignedJwtToken();
-
-    res.status(200).json({
-        success: true,
-        token: token
-    });
+    
+    sendTokenResponse(user, 200, res);
 }
 );
 
@@ -72,3 +66,12 @@ const sendTokenResponse = (user, statusCode, res) => {
             token
         })
 }
+
+exports.getMe= asyncHandler(async(req,res,next)=>{
+    const user=await User.findById(req.user.id)
+
+    res.status(200).json({
+        success:true,
+        data: user
+    })
+})

@@ -11,7 +11,7 @@ export default function GoogleLogin() {
     const userLoginHandler = async () => {
         const code = searchParams.get('code');
         console.log(code);
-        const res = await axios.post('http://localhost:8000/api/v1/auth', {
+        const res = await axios.post('http://localhost:8000/api/v1/gauth', {
             code: code
         })
         // window.location.assign('/')
