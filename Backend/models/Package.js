@@ -28,6 +28,10 @@ const PackageSchema = new mongoose.Schema({
     stayMode: {
         type: mongoose.Schema.ObjectId,
         ref: 'Stay'
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
     }
 })
 

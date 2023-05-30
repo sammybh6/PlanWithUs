@@ -10,6 +10,8 @@ exports.createPackages = asyncHandler(async (req, res, next) => {
     // res.status(200).json({
     //     success: true
     // });
+    req.body.user = req.user.id;
+    console.log(req.body)
     const packages = await Package.create(req.body);
     res.status(201).json({
         success: true,
@@ -24,9 +26,8 @@ exports.createPackages = asyncHandler(async (req, res, next) => {
 
 exports.getPackages = asyncHandler(async (req, res, next) => {
     let query;
-    if(req.params.id)
-    {
-        query=Package.findById(req.params.id).populate('stayMode').populate('modeOfTransport')
+    if (req.params.id) {
+        query = Package.findById(req.params.id).populate('stayMode').populate('modeOfTransport')
     }
     else {
         query = Package.find().populate('stayMode').populate('modeOfTransport')
@@ -52,14 +53,14 @@ exports.updatePackage = asyncHandler(async (req, res, next) => {
 
 exports.deletePackage = asyncHandler(async (req, res, next) => {
 
-    const packages= await Package.findById(req.params.id);
+    const packages = await Package.findById(req.params.id);
     if (!packages) {
         return next(new ErrorResponse(`Package not found with id of ${req.params.id}`, 404))
-    }   
+    }
 
     const stay = await Stay.deleteMany({ package: req.params.id });
     await stay.remove();
-    
+
     res.status(200).json({ success: true, data: {} })
 });
 
