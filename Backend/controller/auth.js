@@ -131,17 +131,16 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 
     const user = await User.findOne({
         resetPasswordToken,
-        resetPasswordExpire: { $gt: Date.now()}
+        resetPasswordExpire: { $gt: Date.now() }
     })
 
-    if(!user)
-    {
+    if (!user) {
         return next(new ErrorResponse('Invalid Token', 400))
     }
 
-    user.password=req.body.password;
-    user.resetPasswordToken=undefined;
-    user.resetPasswordExpire=undefined;
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
 
     await user.save();
 
@@ -150,28 +149,27 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 
 exports.updateDetails = asyncHandler(async (req, res, next) => {
     const fieldsToUpdate = {
-        name:req.body.name,
-        email:req.body.email
+        name: req.body.name,
+        email: req.body.email
     }
 
     const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
-        new:true,
-        runValidators:false
+        new: true,
+        runValidators: false
     })
 
     res.status(201).json({
-        success:true,
-        data:user
+        success: true,
+        data: user
     })
 })
 
 exports.updatePassword = asyncHandler(async (req, res, next) => {
     const user = await User.findById(req.user.id).select('+password');
-    if(!(await user.matchPassword(req.body.currentPassword)))
-    {
-        next (new ErrorResponse('Invalid Password', 401))
+    if (!(await user.matchPassword(req.body.currentPassword))) {
+        next(new ErrorResponse('Invalid Password', 401))
     }
-    user.password=req.body.newPassword;
+    user.password = req.body.newPassword;
 
     await user.save();
 
