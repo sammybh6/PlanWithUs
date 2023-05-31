@@ -1,6 +1,7 @@
 const axios = require('axios')
 const express = require('express')
 const {OAuth2Client} = require('google-auth-library');
+const User=require('../models/User');
 
 
 
@@ -32,7 +33,7 @@ exports.googleLoginCallBack = async (code) => {
     if(data)
     {
 
-        console.log(data.id_token)
+        // console.log(data.id_token)
         const { id_token } = data
         //verifying at backend using id token obtained  by google servers
         const client = new OAuth2Client(process.env.CLIENT_ID);
@@ -47,8 +48,13 @@ exports.googleLoginCallBack = async (code) => {
             });
             const payload = ticket.getPayload();
             const userid = payload['sub'];
-            console.log(payload)
+            // console.log(ticket)
             
+            const user=await User.create({
+                name:payload.name,
+                email:payload.email,
+                password:payload.sub
+            })
         }
         verify().catch(console.error);
     }
