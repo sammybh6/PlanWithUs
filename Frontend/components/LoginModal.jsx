@@ -8,9 +8,23 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import RegisterModal from './RegisterModal';
 import gs from './style/LoginModal.module.css'
-
+import AuthContext from './context/AuthContext';
+import { useContext } from 'react';
+import { postData } from './utils/Rest'
 
 export default function LoginModal() {
+  const auth = useContext(AuthContext)
+  async function reg() {
+    const res = await postData('auth/register', true, {
+      "name": "abc",
+      "email": "abc@gmail.com",
+      "password": "abc123"
+    })
+    console.log(res);
+  }
+
+
+
   const [open, setOpen] = React.useState(false);
   const [regOpen, setRegOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -86,10 +100,11 @@ export default function LoginModal() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={reg}>Check</Button>
+
           <Button onClick={handleClose}>Login</Button>
-          <Button onClick={handleReg}>Register</Button><br/>
-          
+          <Button onClick={handleReg}>Register</Button><br />
+
           {/* <ReactGoogleButton
             type='dark'
             onClick={() => {
@@ -97,14 +112,14 @@ export default function LoginModal() {
             }
             }
           /> */}
-          
+
           <button onClick={() => {
             window.location.assign(getGoogleOAuthURL())
           }} className={gs.logbtn} >
-              Sign in with Google
-        </button>
+            Sign in with Google
+          </button>
         </DialogActions>
-        
+
       </Dialog>
       <RegisterModal isOpen={regOpen} regClose={() => { setRegOpen(false) }} />
     </div>
