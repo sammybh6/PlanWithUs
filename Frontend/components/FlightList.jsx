@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-
+import FlightListCard from './FlightListCard';
 
 function xmlToJson(xml) {
     // Create a new DOMParser object
@@ -47,64 +47,51 @@ export default function FlightList() {
     const [flightData, setFlightData] = React.useState([]);
     const flights = {
         method: 'GET',
-        url: `https://timetable-lookup.p.rapidapi.com/TimeTable/jlr/pnq/20230428/`,
+        url: `https://timetable-lookup.p.rapidapi.com/TimeTable/bom/del/20230628/`,
         headers: {
             'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
             'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
         }
     };
-    // React.useEffect(() => {
-    //     getFlightData();
-    // }, [])
-    // const getFlightData = () => {
+    React.useEffect(() => {
+        getFlightData();
+    }, [])
+    const getFlightData = () => {
 
-    //     axios.request(flights).then(function (response) {
-    //         const json = xmlToJson(response.data);
-    //         console.log(json);
-    //         setFlightData(json);
-    //     }).catch(function (error) {
-    //         console.error(error);
-    //     });
-    // }
+        axios.request(flights).then(function (response) {
+            const json = xmlToJson(response.data);
+            console.log(json);
+            setFlightData(json);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
 
-  //   const config = {
-  //     headers: {
-  //         'Access-Control-Allow-Origin',
-  //         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36' ',
-  //     },
-  // };
-  
-  //   const url="https://www.makemytrip.com/flight/search?itinerary=DEL-BLR-27/03/2023&tripType=O&paxType=A-1_C-0_I-0&intl=false&cabinClass=E&ccde=IN&lang=eng"
-  //   console.log(url)
-  //   axios.get(url, config)
-  //       .then(res => {
-  //           const $ = cheerio.load(res.data)
-  //           const tt=$(".listingCard").text()
-  //           console.log(tt)
-  //       }).catch(err => console.error(err))
+    //   const config = {
+    //     headers: {
+    //         'Access-Control-Allow-Origin',
+    //         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36' ',
+    //     },
+    // };
+
+    //   const url="https://www.makemytrip.com/flight/search?itinerary=DEL-BLR-27/03/2023&tripType=O&paxType=A-1_C-0_I-0&intl=false&cabinClass=E&ccde=IN&lang=eng"
+    //   console.log(url)
+    //   axios.get(url, config)
+    //       .then(res => {
+    //           const $ = cheerio.load(res.data)
+    //           const tt=$(".listingCard").text()
+    //           console.log(tt)
+    //       }).catch(err => console.error(err))
 
     return (
         <div>
             {/* <Navigation /> */}
             <h1>Flight List</h1>
-            {/* {flightData} */}
-            <div id="g_id_onload"
-                data-client_id="445329694262-7q9hot08cm22ujqr8vlj1ipoudiodmlk.apps.googleusercontent.com"
-                data-context="signin"
-                data-ux_mode="redirect"
-                data-login_uri="http://localhost:3000/google"
-                data-callback="handleLogin"
-                data-auto_prompt="false">
-            </div>
-
-            <div class="g_id_signin"
-                data-type="standard"
-                data-shape="rectangular"
-                data-theme="outline"
-                data-text="signin_with"
-                data-size="large"
-                data-logo_alignment="left">
-            </div>
+            {
+                (flightData) ? flightData.map((flight) => {
+                    return <FlightListCard flightData={flight} />
+                }) : <h1>Loading...</h1>
+            }
         </div>
     )
 }
