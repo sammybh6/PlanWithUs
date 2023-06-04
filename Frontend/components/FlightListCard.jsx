@@ -1,7 +1,8 @@
 import React from 'react'
 import flc from '../components/style/FlightListCard.module.css'
 
-export default function FlightListCard(flightData) {
+export default function FlightListCard({ flightData}) {
+    console.log(flightData.name);
     return (
         <div className={flc.main}>
             <div className={flc.card}>
@@ -10,8 +11,8 @@ export default function FlightListCard(flightData) {
                 </div>
                 <div className={flc.content}>
                     <div>
-                        <h3>{flightData.FLSResponseFields.FlightDetails.FlightLegDetails.MarketingAirline.CompanyShortName}</h3>
-                        <p>Flight Name</p>
+                        <h3>{flightData.name}</h3> 
+
                     </div>
                     <div className={flc.loc}>
                         <p>Departure</p>

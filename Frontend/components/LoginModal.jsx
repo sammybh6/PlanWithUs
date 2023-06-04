@@ -16,12 +16,13 @@ export default function LoginModal() {
   const auth = useContext(AuthContext)
   async function reg() {
     const res = await postData('auth/register', true, {
-      "name": "abc",
-      "email": "abc@gmail.com",
-      "password": "abc123"
+      name: "pqr",
+      email: "pqr@gmail.com",
+      password: "pqr123"
     })
     console.log(res);
   }
+
 
 
 
