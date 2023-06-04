@@ -10,7 +10,7 @@ export default function FlightList() {
         method: 'GET',
         url: `https://timetable-lookup.p.rapidapi.com/TimeTable/bom/del/20230628/`,
         headers: {
-            'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+            'X-RapidAPI-Key': 'ba35c709c4msh1cddd9faeb06c26p1d8858jsnb908a9ad561a',
             'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
         }
     };
@@ -24,8 +24,7 @@ export default function FlightList() {
             let xml = new XMLParser().parseFromString(response.data);
             console.log(xml);
 
-
-            setFlightData(xml.children.slice(2,5));
+            setFlightData(xml.children.slice(2, 10));
         }).catch(function (error) {
             console.error(error);
         });
@@ -40,7 +39,7 @@ export default function FlightList() {
             <h1>Flight List</h1>
             {
                 flightData.map((flight) => {
-                    console.log(flight.attributes);
+                    {/* console.log(flight.attributes); */ }
                     return <FlightListCard flightData={flight} />
                 })
             }
