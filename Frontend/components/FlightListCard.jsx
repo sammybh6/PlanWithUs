@@ -2,7 +2,6 @@ import React from 'react'
 import flc from '../components/style/FlightListCard.module.css'
 
 export default function FlightListCard({ flightData }) {
-    console.log(flightData.children[0]);
     return (
         <div className={flc.main}>
             <div className={flc.card}>

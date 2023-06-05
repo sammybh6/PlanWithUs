@@ -3,8 +3,11 @@ import axios from 'axios';
 import Loading from './Loading'; import { Navigation } from '../components/Navigation'
 import TravelCard from './TravelCard';
 import TravelListCard from './TravelListCard';
+import { useLocation } from 'react-router-dom';
 
 export default function TrainList(props) {
+  const location = useLocation();
+  console.log(location.state);
   const [trainData, setTrainData] = React.useState();
   const trains = {
     method: 'GET',
@@ -31,6 +34,7 @@ export default function TrainList(props) {
   return (
 
     <div >
+      <Navigation />
       {
         (trainData) ? trainData.map((train) => {
           return (
@@ -38,7 +42,6 @@ export default function TrainList(props) {
           )
         }) : <Loading />
       }
-      <TravelListCard />
     </div>
   )
 }

@@ -15,54 +15,30 @@ import DirectionsSubwayFilledIcon from '@mui/icons-material/DirectionsSubwayFill
 import t from '../components/style/TravelCard.module.css'
 import axios from 'axios';
 // import TrainList from './TrainList';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 export default function TravelCard(props) {
-  const navigate = useNavigate();
-  const [flightData, setFlightData] = React.useState([]);
-  const [trainData, setTrainData] = React.useState([]);
+  console.log(props.data); 
   const handleIconClicks = name => () => {
     console.log(name);
-  }
-  const clickMef = (event) => {
-    navigate('/flights');
-    props.data["Transport"] = "flight";
-    // console.log(props.data);
-
-
-  }
-  const clickMet = (event) => {
-    navigate('/trains');
-    props.data["Transport"] = "train";
-    // console.log(props.data);
-
-
-    // axios.request(trains).then(function (response) {
-    //   console.log(response.data);
-    //   setTrainData(response.data);
-    // }).catch(function (error) {
-    //   console.error(error);
-    // });
-
-
   }
   // console.log(props.icon);
   // console.log(props.data);
   if (props.icon === "flight") {
     return (
+      
       <Card sx={{ maxWidth: 345 }} style={{
         backgroundColor: '#8F5A3A',
         width: '100%',
         height: '80%',
       }}
-        onClick={(event) => {
-          clickMef(event)
-        }}
         className={t.div}
       >
-
+        <Link to="/flights" state={props.data}  style={{
+        textDecoration: 'none',
+          }}>
         <IconButton name="flight_takeoff"
           className={t.ico} onClick={handleIconClicks("flight_takeoff")}
         >
@@ -79,6 +55,7 @@ export default function TravelCard(props) {
         </CardContent>
         <CardActions disableSpacing>
         </CardActions>
+        </Link>
       </Card >
     );
   }
@@ -89,10 +66,12 @@ export default function TravelCard(props) {
         width: '100%',
         height: '80%',
       }}
-        onClick={(event) => {
-          clickMet(event)
-        }}
         className={t.div}>
+      <Link to="/trains" state={props.data.data} style={
+        {
+          textDecoration: 'none',
+        }
+      }>
 
         <IconButton className={t.ico}>
           <DirectionsSubwayFilledIcon style={{
@@ -110,6 +89,7 @@ export default function TravelCard(props) {
 
         <CardActions disableSpacing>
         </CardActions>
+      </Link>
       </Card>
     );
   }
