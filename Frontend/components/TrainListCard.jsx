@@ -1,6 +1,6 @@
 import React from 'react'
-import tlc from "../components/style/TravelListCard.module.css"
-export default function TravelListCard(trainData) {
+import tlc from "../components/style/TrainListCard.module.css"
+export default function TrainListCard(trainData) {
     console.log(trainData.train);
     return (
         <div className={tlc.main}>

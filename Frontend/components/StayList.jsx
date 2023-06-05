@@ -3,7 +3,8 @@ import axios from 'axios';
 import { NativeSelect } from '@mui/material';
 import Loading from './Loading';
 import { Navigation } from './Navigation';
-// const axios = require("axios");
+import StayListCard from './StayListCard';
+import { useLocation } from 'react-router-dom';
 
 export default function StayList() {
     // const [locationId, setLocationId] = React.useState();
@@ -59,14 +60,20 @@ export default function StayList() {
     //     });
     // }
 
+    const location = useLocation();
+    if (location.state === undefined) {
+        window.location.href = "/";
+    }
+    const data = location.state;
+    const { DateofArrival, DateofDeparture, Destination, No_of_people } = data;
     const options = {
         method: 'GET',
         url: 'https://airbnb13.p.rapidapi.com/search-location',
         params: {
-            location: 'Mumbai',
-            checkin: '2023-09-16',
-            checkout: '2023-09-17',
-            adults: '1',
+            location: { Destination },
+            checkin: { DateofArrival },
+            checkout: { DateofDeparture },
+            adults: { No_of_people },
             children: '0',
             infants: '0',
             pets: '0',
@@ -79,27 +86,27 @@ export default function StayList() {
         }
     };
     const [stayList, setStayList] = React.useState();
-    // React.useEffect(() => {
-    //     getStayList();
-    // }, [])
-    // const getStayList = () => {
-    //     axios.request(options).then(function (response) {
-    //         console.log(response.data.results);
-    //         setStayList(response.data.results);
-    //     }).catch(function (error) {
-    //         console.error(error);
-    //     });
-    // }
+    React.useEffect(() => {
+        getStayList();
+    }, [])
+    const getStayList = () => {
+        axios.request(options).then(function (response) {
+            // console.log(response.data.results);
+            setStayList(response.data.results);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
     console.log(stayList);
     return (
         <div>
             <Navigation />
-            <Loading />
-            {/* {(stayList) ? stayList.map((stay) => {
+            {/* <Loading /> */}
+            {(stayList) ? stayList.map((stay) => {
                 return (
-                    <div>{stay.name}</div>
+                    <StayListCard stay={stay} />
                 )
-            }) : <Loading />} */}
+            }) : <Loading />}
             Samyak
         </div>
     )

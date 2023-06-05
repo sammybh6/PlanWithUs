@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
-import Test from '../components/test'
+// import Test from '../components/test'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from '../components/Home'
@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/google' element={<GoogleLogin />} />
-          <Route path="/test" element={<Test />} />
+          {/* <Route path="/test" element={<Test />} /> */}
           <Route path="/flights" element={<FlightList />} />
           <Route path="/trains" element={<TrainList />} />
           <Route path='/hotels' element={<HotelList />} />

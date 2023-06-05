@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Loading from './Loading'; import { Navigation } from '../components/Navigation'
 import TravelCard from './TravelCard';
-import TravelListCard from './TravelListCard';
+import TrainListCard from './TrainListCard';
 import { useLocation } from 'react-router-dom';
 
 export default function TrainList(props) {
@@ -38,7 +38,7 @@ export default function TrainList(props) {
       {
         (trainData) ? trainData.map((train) => {
           return (
-            <TravelListCard train={train} />
+            <TrainListCard train={train} />
           )
         }) : <Loading />
       }

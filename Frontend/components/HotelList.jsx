@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import Loading from './Loading';
 import { Navigation } from './Navigation';
+import HotelListCard from './HotelListCard';
 
 export default function HotelList() {
     const [locationid, setLocationId] = React.useState();
@@ -75,7 +76,7 @@ export default function HotelList() {
             {(hotelList) ? hotelList.map((hotel) => {
                 return (
                     <div>
-                        <h1>{hotel.name}</h1>
+                        <HotelListCard hotel={hotel} />
                     </div>
                 )
             }) : <Loading />
