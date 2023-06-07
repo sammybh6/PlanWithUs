@@ -6,6 +6,7 @@ import { Navigation } from './Navigation';
 import StayListCard from './StayListCard';
 import { useLocation } from 'react-router-dom';
 
+
 export default function StayList() {
     // const [locationId, setLocationId] = React.useState();
     // const [stayList, setStayList] = React.useState();
@@ -64,16 +65,18 @@ export default function StayList() {
     if (location.state === undefined) {
         window.location.href = "/";
     }
+    console.log(location.state)
     const data = location.state;
+    console.log(data);
     const { DateofArrival, DateofDeparture, Destination, No_of_people } = data;
     const options = {
         method: 'GET',
         url: 'https://airbnb13.p.rapidapi.com/search-location',
         params: {
-            location: { Destination },
-            checkin: { DateofArrival },
-            checkout: { DateofDeparture },
-            adults: { No_of_people },
+            location:  Destination ,
+            checkin: DateofArrival ,
+            checkout: DateofDeparture ,
+            adults:  No_of_people ,
             children: '0',
             infants: '0',
             pets: '0',
@@ -91,7 +94,7 @@ export default function StayList() {
     }, [])
     const getStayList = () => {
         axios.request(options).then(function (response) {
-            // console.log(response.data.results);
+            console.log(response.data);
             setStayList(response.data.results);
         }).catch(function (error) {
             console.error(error);
@@ -99,15 +102,15 @@ export default function StayList() {
     }
     console.log(stayList);
     return (
-        <div>
+        <div >
             <Navigation />
             {/* <Loading /> */}
+            
             {(stayList) ? stayList.map((stay) => {
                 return (
-                    <StayListCard stay={stay} />
+                    <StayListCard/>
                 )
             }) : <Loading />}
-            Samyak
         </div>
     )
 }

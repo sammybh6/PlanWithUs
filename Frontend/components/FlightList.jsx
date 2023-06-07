@@ -8,14 +8,17 @@ import { useLocation } from 'react-router-dom';
 
 
 export default function FlightList() {
+
+
     const location = useLocation();
-    console.log(location.state);
+
     if (location.state === undefined) {
         window.location.href = "/";
     }
     const data=location.state.data;
     const { Source, Destination, DateOfJourney } = data;
 
+    
     const doj=DateOfJourney.split('-').join('');
 
     const [flightData, setFlightData] = React.useState([]);
@@ -27,6 +30,10 @@ export default function FlightList() {
             'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
         }
     };
+    
+
+   
+
     React.useEffect(() => {
         getFlightData();
     }, [])

@@ -22,17 +22,15 @@ import { Link } from 'react-router-dom';
 
 export default function StayCard(props) {
   console.log(props.data);
-  const handleIconClicks = name => () => {
-    console.log(name);
-  }
-
-
   if (props.icon === "hotel") {
     return (
       <Card sx={{ maxWidth: 345 }} style={{
         backgroundColor: '#8F5A3A',
         width: '100%',
         height: '80%',
+        onClick: () => {
+          console.log(props.data);
+        }
       }}
       >
         <Link to="/hotels" state={props.data} style={{

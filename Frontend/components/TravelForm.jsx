@@ -19,7 +19,7 @@ import TrainList from "./TrainList";
 
 
 export default function TravelForm() {
-  const [data, setData] = React.useState([{ na: "sfsdfs" }]);
+  const [data, setData] = React.useState();
   const { register, handleSubmit } = useForm();
   const [selectedDate, handleDateChange] = React.useState(new Date());
   const submitHandler = (data) => {

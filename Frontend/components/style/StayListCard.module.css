@@ -1,97 +1,96 @@
-body {
-	margin: 0;
-	padding: 0;
-	font-family: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Lato:200,400|Playfair+Display');
+
+.wrapper {
+  float: left;
+  width: 30%;
+  min-width: 300px;
+  background-color: white;
+  margin: 1.5%;
+  padding: 2em 1em;
+  box-sizing: border-box;
+  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.12), 0 3px 5px rgba(0, 0, 0, 0.24);
+  text-align: center;
+}
+.wrapper>h1 {
+  font-family: "Lato", sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  letter-spacing: .15em;
+  color: #333;
+}
+.details {
+  width: 95%;
+  margin: 0 auto 2em;
+  padding-top: 10.5em;
+  padding-bottom: 1em;
+  background-color: #FFEBC8;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.24);
+  transition: all ease-in 0.15s;
 }
 
-.main_card {
-	color: #fff;
-	width: 760px;
-	height: 390px;
-	margin: 50px auto;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	max-width: 770px;
-	background: black; 
-	/* background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);
-	background: -webkit-gradient(linear, left top, right top, from(#92FE9D), to(#00C9FF));
-	background: -webkit-linear-gradient(left, #92FE9D, #00C9FF);
-	background: -o-linear-gradient(left, #92FE9D, #00C9FF);
-	background: linear-gradient(to right, #92FE9D, #00C9FF);  */
-	-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.3); 
-	        box-shadow: 0 0 40px rgba(0,0,0,0.3);
+.wrapper:hover .details{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 5px rgba(0,0,0,0.22);
+  transform: translate(0px, -2px) scale(1.01);
 }
 
-.card_left {
-	width: 90%;
+.details>h1 {
+  font-family: "Playfair Display";
+  font-size: 1em;
+}
+.details>h2 {
+  font-family: sans-serif;
+  font-size: 1.4em;
+  font-weight: 200;
+  letter-spacing: 0.1em;
+}
+.details>p {
+  font-family: sans-serif;
+  font-size: 1em;
+  font-weight: 200;
 }
 
-.card_datails {
-	width: 90%;
-	padding: 30px;
-	margin-top: -25px;
+.image{
+  position: relative;
+  z-index: 2;
+  width: 85%;
+  height: 250px;
+  margin: 0 auto -10em;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
+  transition: all ease-in .15s;
 }
-.card_datails  h1 {
-	font-size: 30px;
+.wrapper:hover .image{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  transform: translate(0px, -3px) scale(1.02);
 }
-.card_right img {
-	height: 390px;
-	border-radius: 2px;
-}
-.card_right {
-	border-radius: 2px;
-}
-
-.card_cat {
-	width: 100%;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
+  
+.i1{
+    background-image: url(https://31.media.tumblr.com/9e9ba532a3174811c79e07bc4a61ebdc/tumblr_n92w6iRSjY1r5gmiko1_500.jpg);
 }
 
-.PG, .year, .genre, .time {
-	color: fff;
-	padding: 10px;
-	font-weight: bold;
-	border-radius: 15px;
+
+
+@media screen and (max-width: 1000px) {
+  .i2 {
+  background-image: url(http://www.asianventure.com/images/country/vietnam.jpg);
+}.wrapper{
+    width: 47%;
+  }
+}
+@media screen and(max-width:700px){
+  .wrapper{
+    float: none;
+    width: 70%;
+    margin: 1em auto;
+  }
+}
+@media screen and(max-width:700px){
+  .wrapper{
+    float: none;
+    width: 70%;
+    margin: 1em auto;
+  }
 }
 
-.PG {
-	background: #92FE9D;
-	-webkit-box-shadow: 0 0 50px rgba(0,0,0,0.1);
-	        box-shadow: 0 0 50px rgba(0,0,0,0.1);
-	/* -webkit-transition: 300ms ease-in-out; */
-}
-
-.disc {
-	font-weight: 100;
-	line-height: 27px;
-}
-a {
-	color: darkcyan;
-	display: block;
-	text-decoration: none;
-}
-.social-btn {
-	margin-left: -10px;
-}
-button {
-	color: #fff;
-	border: none;
-	padding: 20px;
-	outline: none;
-	font-size: 12px;
-	margin-top: 30px;
-	margin-left: 10px;
-	background: red;
-	border-radius: 12px;
-	-webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
-	        box-shadow: 0 0 20px rgba(0,0,0,0.2);
-	-webkit-transition: 300ms ease-in-out;
-	-o-transition: 200ms ease-in-out;
-	transition: 200ms ease-in-out;
-}

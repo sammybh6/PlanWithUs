@@ -15,7 +15,7 @@ export default function StayForms() {
     const { register, handleSubmit } = useForm();
     const [selectedDate, handleDateChange] = React.useState(new Date());
     const [selectedDate1, handleDateChange1] = React.useState(new Date());
-    const [data, setData] = React.useState([]);
+    const [data, setData] = React.useState();
     const submitHandler = (data) => {
         data["DateofArrival"] = dayjs(selectedDate).format("YYYY-MM-DD");
         data["DateofDeparture"] = dayjs(selectedDate1).format("YYYY-MM-DD");

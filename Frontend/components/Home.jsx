@@ -5,6 +5,7 @@ import StayForms from './StayForms'
 
 import Header from '../components/Header'
 import TravelForm from '../components/TravelForm'
+import StayListCard from './StayListCard'
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
             <Header />
             <TravelForm />
             <StayForms />
+            <StayListCard />
         </div>
     )
 

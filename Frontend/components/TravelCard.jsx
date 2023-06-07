@@ -16,17 +16,62 @@ import t from '../components/style/TravelCard.module.css'
 import axios from 'axios';
 // import TrainList from './TrainList';
 import { Link, useNavigate } from 'react-router-dom';
+import { get, set } from 'react-hook-form';
 
 
 
 export default function TravelCard(props) {
+
+  const [srcCode, setSrcCode] = React.useState("");
+  const [destCode, setDestCode] = React.useState("");
   console.log(props.data); 
   const handleIconClicks = name => () => {
     console.log(name);
   }
-  // console.log(props.icon);
-  // console.log(props.data);
   if (props.icon === "flight") {
+
+    const srcAiprort = (props.data.data)?props.data.data.Source:"";
+    const destAiprort = (props.data.data)?props.data.data.Destination:"";
+    React.useEffect(() => {
+      
+    }, []);
+
+
+  function getAirportCode(text, code) {
+    axios.request({
+      method: 'GET',
+      url: 'https://aerodatabox.p.rapidapi.com/airports/search/term',
+      params: {
+        q: `${text}`,
+        limit: '10'
+      },
+      headers: {
+        'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+        'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
+      }
+  }).then( function (response) {
+      // console.log(response.data.items[0].iata);
+      if(code==="src"){
+        setSrcCode(response.data.items[0].iata);
+      }
+      else{
+        setDestCode(response.data.items[0].iata);
+      }
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }
+
+    
+    
+
+    // getAirportCode(srcAiprort, "src");
+    //   getAirportCode(destAiprort, "dest");
+    console.log(srcCode);
+    console.log(destCode);
+
+    // props.data.data.Source=srcCode;
+    // props.data.data.Destination=destCode;
     return (
       
       <Card sx={{ maxWidth: 345 }} style={{
@@ -60,6 +105,8 @@ export default function TravelCard(props) {
     );
   }
   else {
+
+
     return (
       <Card sx={{ maxWidth: 345 }} style={{
         backgroundColor: '#8F5A3A',
