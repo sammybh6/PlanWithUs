@@ -73,10 +73,10 @@ export default function StayList() {
         method: 'GET',
         url: 'https://airbnb13.p.rapidapi.com/search-location',
         params: {
-            location:  Destination ,
-            checkin: DateofArrival ,
-            checkout: DateofDeparture ,
-            adults:  No_of_people ,
+            location: Destination,
+            checkin: DateofArrival,
+            checkout: DateofDeparture,
+            adults: No_of_people,
             children: '0',
             infants: '0',
             pets: '0',
@@ -105,10 +105,10 @@ export default function StayList() {
         <div >
             <Navigation />
             {/* <Loading /> */}
-            
+
             {(stayList) ? stayList.map((stay) => {
                 return (
-                    <StayListCard/>
+                    <StayListCard stay={stay} />
                 )
             }) : <Loading />}
         </div>
