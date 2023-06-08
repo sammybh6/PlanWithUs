@@ -1,5 +1,6 @@
 
-import React from 'react'
+// import React from 'react'
+import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './Navigation';
@@ -7,6 +8,7 @@ import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { useContext } from 'react';
 
 export default async function SingleHotel() {
     const location = useLocation();
@@ -27,13 +29,26 @@ export default async function SingleHotel() {
         }
     };
 
-    try {
-        const response = await axios.request(options);
-        console.log(response.data);
-        setData(response.data);
-    } catch (error) {
-        console.error(error);
+    // try {
+    //     const response = await axios.request(options);
+    //     console.log(response.data);
+    //     setData(response.data);
+    // } catch (error) {
+    //     console.error(error);
+    // }
+
+    React.useEffect(() => {
+        getHotelImages();
+    }, [])
+    const getHotelImages = () => {
+        axios.request(options).then(function (response) {
+            console.log(response.data);
+            setData(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
     }
+
 
     return (
         <div><Navigation />
@@ -41,9 +56,9 @@ export default async function SingleHotel() {
                 <div style={{ marginBlockStart: "2 em" }}>
                     <ImageList variant="masonry" cols={2} gap={8}>
                         {data && data.map((item) => (
-                            <ImageListItem key={item.url_max}>
+                            <ImageListItem key={item}>
                                 <img
-                                    src={`${item}`}
+                                    src={`${item.url_max}`}
                                 // srcSet={{ item } + "?w=248&fit=crop&auto=format&dpr=2 2x"}
                                 // alt={item.title}
                                 // loading="lazy"
