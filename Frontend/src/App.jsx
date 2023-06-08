@@ -11,6 +11,7 @@ import HotelList from '../components/HotelList'
 import StayList from '../components/StayList'
 import GoogleLogin from '../components/GoogleLogin'
 import SingleStay from '../components/SingleStay'
+import SingleHotel from '../components/SingleHotel'
 // import TravelSection from '../components/TravelSection'
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/hotels' element={<HotelList />} />
           <Route path='/stays' element={<StayList />} />
           <Route path='/singleStay' element={<SingleStay />} />
+          <Route path='/singleHotel' element={<SingleHotel />} />
         </Routes>
       </BrowserRouter>
 
