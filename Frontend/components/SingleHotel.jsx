@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import sh from "../components/style/SingleHotel.module.css";
 import Navigation from './Navigation';
 export default function SingleHotel() {
     const location = useLocation()
@@ -41,8 +42,8 @@ export default function SingleHotel() {
     return (
         <div>
             <Navigation />
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <Box sx={{ width: 600, height: 700, overflowY: 'scroll', padding: 1 }}>
+            <div classname={sh.gallery} style={{ display: 'flex', flexDirection: 'row', padding: '30px' }}>
+                <Box style={{ width: '45vw', height: '80vh', overflowY: 'scroll' }}>
                     <div style={{ marginBlockStart: "2 em" }}>
                         <ImageList variant="masonry" cols={2} gap={8}>
                             {hotelImages && hotelImages.map((item) => (
@@ -59,19 +60,20 @@ export default function SingleHotel() {
                         </ImageList>
                     </div>
                 </Box>
-                <Box sx={{ width: 600, height: 700, padding: 1 }}>
-                    <div style={{ marginBlockStart: "1.5 em" }}>
-                        <h1>{singleHotel.hotel_name}</h1>
-                        <h1>{singleHotel.address}</h1>
-                        <h2>{singleHotel.city}</h2>
-                        <h2>{singleHotel.country}</h2>
-                        <br />
-                        <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{singleHotel.review_score}</span>
-                        <h2>{`Rate: ${singleHotel.price_breakdown.all_inclusive_price} ${singleHotel.price_breakdown.currency}`}</h2>
-                        <span>{`Checkin: ${singleHotel.checkin.from} `}</span>
-                        <span>{`Checkout: ${singleHotel.checkout.until}`}</span>
+                <div className={sh.details}>
+                    <div className={sh.heading}>
+                        <h1 style={{ fontSize: '42px' }}>{singleHotel.hotel_name}</h1>
+                        <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{`Ratings: ${singleHotel.review_score}`}</span>
                     </div>
-                </Box>
+                    <div className={sh.address}>
+                        <h3>{singleHotel.address}</h3>
+                        <h3>{`${singleHotel.city}, ${singleHotel.country_trans}`}</h3>
+                    </div>
+                    <br />
+                    <span>{`Checkin: ${singleHotel.checkin.from} `}</span>
+                    <span>{`Checkout: ${singleHotel.checkout.until}`}</span>
+                    <h3>{`Rate: ${singleHotel.price_breakdown.all_inclusive_price} ${singleHotel.price_breakdown.currency}`}</h3>
+                </div>
             </div>
         </div>
     );

@@ -18,7 +18,7 @@ export default function StayListCard({ stay }) {
                         </div>
                         <div className={slc.details}><h1><em>₹ {stay.price.total}</em></h1>
                             <h2>{stay.city}</h2>
-                            <p>{ ljljedl }</p></div>
+                            <p></p></div>
                         <p style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{stay.name}</p>
                     </div>
                 </div>
