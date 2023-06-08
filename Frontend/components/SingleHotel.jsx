@@ -1,26 +1,21 @@
-
-// import React from 'react'
-import * as React from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import Navigation from './Navigation';
+import React from 'react'
+import { useLocation } from 'react-router-dom'
+import axios from 'axios'
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import { useContext } from 'react';
+import Navigation from './Navigation';
+export default function SingleHotel() {
+    const location = useLocation()
+    const hid=(location.state.hotel_id)
+    const [hotelImages, setHotelImages] = React.useState();
 
-export default async function SingleHotel() {
-    const location = useLocation();
-    const singleHotel = location.state;
-
-    // const axios = require('axios');
-    const [data, setData] = React.useState(null);
     const options = {
         method: 'GET',
         url: 'https://booking-com.p.rapidapi.com/v1/hotels/photos',
         params: {
-            hotel_id: `${singleHotel.hotel_id}`,
+            hotel_id: `${hid}`,
             locale: 'en-gb'
         },
         headers: {
@@ -29,47 +24,40 @@ export default async function SingleHotel() {
         }
     };
 
-    // try {
-    //     const response = await axios.request(options);
-    //     console.log(response.data);
-    //     setData(response.data);
-    // } catch (error) {
-    //     console.error(error);
-    // }
-
     React.useEffect(() => {
         getHotelImages();
     }, [])
     const getHotelImages = () => {
         axios.request(options).then(function (response) {
             console.log(response.data);
-            setData(response.data);
+            setHotelImages(response.data);
         }).catch(function (error) {
             console.error(error);
         });
     }
+    console.log(hotelImages);
 
+  return (
+    <div>
+        <Navigation/>
+        <Box sx={{ width: 600, height: 700, overflowY: 'scroll', padding: 1 }}>
+                    <div style={{ marginBlockStart: "2 em" }}>
+                        <ImageList variant="masonry" cols={2} gap={8}>
+                            {hotelImages && hotelImages.map((item) => (
+                                <ImageListItem key={item}>
+                                    <img
+                                        src={`${item.url_max}`}
+                                    // srcSet={{ item } + "?w=248&fit=crop&auto=format&dpr=2 2x"}
+                                    // alt={item.title}
+                                    // loading="lazy"
+                                    />
+                                    {/* <ImageListItemBar position="below" title={item.author} /> */}
+                                </ImageListItem>
+                            ))}
+                        </ImageList>
+                    </div>
+                </Box>
 
-    return (
-        <div><Navigation />
-            <Box sx={{ width: 600, height: 600, overflowY: 'scroll', padding: 1 }}>
-                <div style={{ marginBlockStart: "2 em" }}>
-                    <ImageList variant="masonry" cols={2} gap={8}>
-                        {data && data.map((item) => (
-                            <ImageListItem key={item}>
-                                <img
-                                    src={`${item.url_max}`}
-                                // srcSet={{ item } + "?w=248&fit=crop&auto=format&dpr=2 2x"}
-                                // alt={item.title}
-                                // loading="lazy"
-                                />
-                                {/* <ImageListItemBar position="below" title={item.author} /> */}
-                            </ImageListItem>
-                        ))}
-                    </ImageList>
-                </div>
-            </Box>
-        </div>
-    )
+    </div>
+  )
 }
-
