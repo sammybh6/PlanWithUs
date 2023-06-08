@@ -1,24 +1,28 @@
 import React from 'react'
 import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 import slc from "../components/style/StayListCard.module.css";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SingleStay from './SingleStay';
 
 export default function StayListCard({ stay }) {
+  let images=stay?stay.images:[];
+    const fonts=(stay.name.length>20)?'0.2em':'1em';
     return (
+        <Link to='/singleStay' state={images} style={{textDecoration: 'none'}}>
         <div>
-            < SingleStay singleStay={stay.images} />
+            {/* {stay && <SingleStay singleStay={stay.images} />} */}
             <div className={slc.main}>
                 <div className={slc.wrapper}>
-                    <h1>PHILIPPINES</h1>
-                    <div className={slc.image}></div>
-                    <div className={slc.details}><h1><em>Boracay Island</em></h1>
-                        <h2>Surfer's Home</h2>
-                        <p>3 Days - 2 Nights</p></div>
-                    <h1>£750</h1>
+                    {/* <h1>PHILIPPINES</h1> */}
+                    <div className={slc.image} style={{ backgroundImage: `url(${images[0]})`}}>
+                    </div>
+                    <div className={slc.details}><h1><em>₹ {stay.price.total}</em></h1>
+                        <h2>{stay.city}</h2>
+                        <p>{}</p></div>
+                      <p style={{color: "#562B08", fontWeight: "bold", fontSize: "1em"}}>{stay.name}</p>
                 </div>
             </div>
         </div>
-
+        </Link>
     )
 }

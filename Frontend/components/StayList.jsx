@@ -84,6 +84,7 @@ export default function StayList() {
             currency: 'INR'
         },
         headers: {
+            'X-RapidAPI-Key': 'ba35c709c4msh1cddd9faeb06c26p1d8858jsnb908a9ad561a',
             'X-RapidAPI-Key': 'fa80125835msha1dfd0fa1db0c02p183390jsn955d222b6b09',
             'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
         }
