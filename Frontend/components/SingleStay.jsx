@@ -3,15 +3,18 @@ import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { useLocation } from 'react-router-dom';
 
-export default function SingleStay({ singleStay }) {
+export default function SingleStay() {
+    const location = useLocation();
+    const singleStay = location.state;
     return (
         <Box sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
             <ImageList variant="masonry" cols={3} gap={8}>
-                {singleStay.map((item) => (
+                {singleStay && singleStay.map((item) => (
                     <ImageListItem key={item}>
                         <img
-                            src={{ item } + "?w=248&fit=crop&auto=format"}
+                            src={`${item}`}
                         // srcSet={{ item } + "?w=248&fit=crop&auto=format&dpr=2 2x"}
                         // alt={item.title}
                         // loading="lazy"

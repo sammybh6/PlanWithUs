@@ -3,26 +3,25 @@ import axios from 'axios';
 import Loading from './Loading';
 import { Navigation } from './Navigation';
 import HotelListCard from './HotelListCard';
+import { useLocation } from 'react-router-dom';
 
 export default function HotelList() {
+    const loc=useLocation();
+    const { Destination, DateofArrival, DateofDeparture, No_of_people} = loc.state;
+    console.log(Destination, DateofArrival, DateofDeparture, No_of_people);
+
     const [locationid, setLocationId] = React.useState();
     const [hotelList, setHotelList] = React.useState();
     const options1 = {
         method: 'GET',
-        url: 'https://travel-advisor.p.rapidapi.com/locations/search',
+        url: 'https://booking-com.p.rapidapi.com/v1/hotels/locations',
         params: {
-            query: 'Jabalpur',
-            limit: '30',
-            offset: '0',
-            units: 'km',
-            location_id: '1',
-            currency: 'USD',
-            sort: 'relevance',
-            lang: 'en_US'
+            name: Destination,
+            locale: 'en-gb'
         },
         headers: {
             'X-RapidAPI-Key': 'ba35c709c4msh1cddd9faeb06c26p1d8858jsnb908a9ad561a',
-            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+            'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
         }
     };
 
@@ -30,45 +29,52 @@ export default function HotelList() {
         getLocationId();
     }, []);
     const getLocationId = () => {
-        axios.request(options1).then(function (response) {
-            // console.log(response.data);
-            setLocationId(response.data.data[0].result_object.location_id);
+         axios.request(options1).then(function (response) {
+            console.log(response.data);
+            setLocationId(response.data[0].dest_id);
         }).catch(function (error) {
             console.error(error);
         });
     }
 
-    const lid = locationid;
-    console.log(lid);
+
+
+    const place = locationid;
+    console.log(place);
     const options = {
         method: 'GET',
-        url: 'https://travel-advisor.p.rapidapi.com/hotels/get-details',
+        url: 'https://booking-com.p.rapidapi.com/v1/hotels/search',
         params: {
-            location_id: lid,
-            checkin: '2023-04-15',
-            adults: '1',
-            lang: 'en_US',
-            currency: 'INR',
-            nights: '2'
+            checkin_date: '2023-09-27',
+            dest_type: 'city',
+            units: 'metric',
+            checkout_date: '2023-09-28',
+            adults_number: '2',
+            order_by: 'popularity',
+            dest_id:  `${place}`,
+            filter_by_currency: 'INR',
+            locale: 'en-gb',
+            room_number: '1',
+            page_number: '1',
+            include_adjacency: 'true'
         },
         headers: {
             'X-RapidAPI-Key': 'ba35c709c4msh1cddd9faeb06c26p1d8858jsnb908a9ad561a',
-            'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+            'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
         }
-    };
-
+      };
     React.useEffect(() => {
         getHotelList();
-    }, [])
+    }, [locationid])
     const getHotelList = () => {
         axios.request(options).then(function (response) {
             console.log(response.data);
-            setHotelList(response.data);
+            setHotelList(response.data.result);
         }).catch(function (error) {
             console.error(error);
         });
     }
-    console.log(hotelList);
+
 
     return (
         <div>
