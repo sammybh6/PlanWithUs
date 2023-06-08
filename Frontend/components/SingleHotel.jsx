@@ -8,7 +8,8 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Navigation from './Navigation';
 export default function SingleHotel() {
     const location = useLocation()
-    const hid=(location.state.hotel_id)
+    const singleHotel = location.state;
+    const hid = (location.state.hotel_id)
     const [hotelImages, setHotelImages] = React.useState();
 
     const options = {
@@ -37,10 +38,11 @@ export default function SingleHotel() {
     }
     console.log(hotelImages);
 
-  return (
-    <div>
-        <Navigation/>
-        <Box sx={{ width: 600, height: 700, overflowY: 'scroll', padding: 1 }}>
+    return (
+        <div>
+            <Navigation />
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <Box sx={{ width: 600, height: 700, overflowY: 'scroll', padding: 1 }}>
                     <div style={{ marginBlockStart: "2 em" }}>
                         <ImageList variant="masonry" cols={2} gap={8}>
                             {hotelImages && hotelImages.map((item) => (
@@ -57,7 +59,20 @@ export default function SingleHotel() {
                         </ImageList>
                     </div>
                 </Box>
-
-    </div>
-  )
+                <Box sx={{ width: 600, height: 700, padding: 1 }}>
+                    <div style={{ marginBlockStart: "1.5 em" }}>
+                        <h1>{singleHotel.hotel_name}</h1>
+                        <h1>{singleHotel.address}</h1>
+                        <h2>{singleHotel.city}</h2>
+                        <h2>{singleHotel.country}</h2>
+                        <br />
+                        <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{singleHotel.review_score}</span>
+                        <h2>{`Rate: ${singleHotel.price_breakdown.all_inclusive_price} ${singleHotel.price_breakdown.currency}`}</h2>
+                        <span>{`Checkin: ${singleHotel.checkin.from} `}</span>
+                        <span>{`Checkout: ${singleHotel.checkout.until}`}</span>
+                    </div>
+                </Box>
+            </div>
+        </div>
+    );
 }
