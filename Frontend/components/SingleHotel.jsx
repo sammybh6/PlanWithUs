@@ -6,11 +6,12 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Navigation from './Navigation';
+import { Button } from '@mui/material';
 export default function SingleHotel() {
     const location = useLocation()
     const hid=(location.state.hotel_id)
     const [hotelImages, setHotelImages] = React.useState();
-
+    
     const options = {
         method: 'GET',
         url: 'https://booking-com.p.rapidapi.com/v1/hotels/photos',
@@ -57,6 +58,7 @@ export default function SingleHotel() {
                         </ImageList>
                     </div>
                 </Box>
+        <Button onClick={()=>setPageNumber(pageNumber+1)}>Next</Button>
 
     </div>
   )

@@ -4,12 +4,13 @@ import Loading from './Loading';
 import { Navigation } from './Navigation';
 import HotelListCard from './HotelListCard';
 import { useLocation } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 export default function HotelList() {
     const loc=useLocation();
     const { Destination, DateofArrival, DateofDeparture, No_of_people} = loc.state;
     console.log(Destination, DateofArrival, DateofDeparture, No_of_people);
-
+    const [pageNumber, setPageNumber] = React.useState(0);
     const [locationid, setLocationId] = React.useState();
     const [hotelList, setHotelList] = React.useState();
     const options1 = {
@@ -55,7 +56,7 @@ export default function HotelList() {
             filter_by_currency: 'INR',
             locale: 'en-gb',
             room_number: '1',
-            page_number: '1',
+            page_number: `${pageNumber}`,
             include_adjacency: 'true'
         },
         headers: {
@@ -65,7 +66,7 @@ export default function HotelList() {
       };
     React.useEffect(() => {
         getHotelList();
-    }, [locationid])
+    }, [locationid,pageNumber])
     const getHotelList = () => {
         axios.request(options).then(function (response) {
             console.log(response.data);
@@ -77,7 +78,7 @@ export default function HotelList() {
 
 
     return (
-        <div>
+        <div >
             <Navigation />
             {(hotelList) ? hotelList.map((hotel) => {
                 return (
@@ -87,6 +88,12 @@ export default function HotelList() {
                 )
             }) : <Loading />
             }
+            
+            <div>
+
+                <Button  onClick={() => setPageNumber(pageNumber + 1)}>Next</Button>
+                {pageNumber>0 && <Button onClick={()=> setPageNumber(pageNumber-1 )}>Previous</Button>}
+            </div>
         </div>
     )
 }
