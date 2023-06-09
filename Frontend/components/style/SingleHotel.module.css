@@ -1,0 +1,77 @@
+.details{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+    margin-top: 16px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 25px;
+    color: rgb(98, 57, 57);
+    font-family: 'Lato', 'Mukta', sans-serif;
+}
+/* .gallery{
+    background-color: white;
+    border-radius: 10px;
+}
+.gallery:hover
+{
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+} */
+
+.details:hover
+{
+    transform: scale(1.02) perspective(0px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.address{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: flex-start; */
+}
+
+.timings{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.facilitiesList{
+    display: flex;
+    flex-direction: column;
+    list-style-type: square;
+    line-height: 0.02;
+    align-items: flex-start;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    /* font-size: 10px; */
+}
+
+.btn{
+    background-color: rgb(98, 57, 57);
+}
+
+.timings{
+    color: black;
+}
+/* .rate{
+
+} */
+
+.rbtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
