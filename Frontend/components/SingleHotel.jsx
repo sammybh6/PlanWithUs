@@ -7,11 +7,14 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import sh from "../components/style/SingleHotel.module.css";
 import Navigation from './Navigation';
+
+
 export default function SingleHotel() {
     const location = useLocation()
     const singleHotel = location.state;
     const hid = (location.state.hotel_id)
     const [hotelImages, setHotelImages] = React.useState();
+    const [hotelFacilities, setHotelFacilities] = React.useState();
 
     const options = {
         method: 'GET',
@@ -39,8 +42,37 @@ export default function SingleHotel() {
     }
     console.log(hotelImages);
 
+
+
+
+    const facilities = {
+        method: 'GET',
+        url: 'https://booking-com.p.rapidapi.com/v1/hotels/facilities',
+        params: {
+            hotel_id: `${hid}`,
+            locale: 'en-gb'
+        },
+        headers: {
+            'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+            'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
+        }
+    };
+
+    React.useEffect(() => {
+        getHotelFacilities();
+    }, [])
+    const getHotelFacilities = () => {
+        axios.request(facilities).then(function (response) {
+            console.log(response.data);
+            setHotelFacilities(response.data.slice(0, 8));
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+
     return (
         <div>
+
             <Navigation />
             <div classname={sh.gallery} style={{ display: 'flex', flexDirection: 'row', padding: '30px' }}>
                 <Box style={{ width: '45vw', height: '80vh', overflowY: 'scroll' }}>
@@ -66,13 +98,39 @@ export default function SingleHotel() {
                         <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{`Ratings: ${singleHotel.review_score}`}</span>
                     </div>
                     <div className={sh.address}>
-                        <h3>{singleHotel.address}</h3>
-                        <h3>{`${singleHotel.city}, ${singleHotel.country_trans}`}</h3>
+                        <div style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                        }}>
+                            <h3>{singleHotel.address}</h3>
+                            <h3>{`${singleHotel.city}, ${singleHotel.country_trans}`}</h3>
+                        </div>
+                        <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{`${singleHotel.review_score_word}`}</span>
+                    </div>
+                    <div className={sh.facilities}>
+                        {/* <h3>Facilities</h3> */}
+                        <div className={sh.facilitiesList}>
+                            {hotelFacilities && hotelFacilities.map((item) => (
+                                <ul className={sh.facility}>
+                                    <li>{`${item.facility_name}`}</li>
+                                </ul>
+                            ))}</div>
+
+                    </div>
+
+                    <br />
+                    <div className={sh.timings}>
+                        <span>{`Checkin: ${singleHotel.checkin.from} `}</span>
+                        <span>{`Checkout: ${singleHotel.checkout.until}`}</span>
                     </div>
                     <br />
-                    <span>{`Checkin: ${singleHotel.checkin.from} `}</span>
-                    <span>{`Checkout: ${singleHotel.checkout.until}`}</span>
-                    <h3>{`Rate: ${singleHotel.price_breakdown.all_inclusive_price} ${singleHotel.price_breakdown.currency}`}</h3>
+                    <div className={sh.rbtn}>
+                        <h3>{`Rate: ${singleHotel.price_breakdown.all_inclusive_price} ${singleHotel.price_breakdown.currency}`}</h3>
+                        <div class="btn-holder">
+                            <button type="button" className='btn'>Click</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -8,6 +8,8 @@
     background-color: white;
     border-radius: 10px;
     margin-left: 25px;
+    color: rgb(98, 57, 57);
+    font-family: 'Lato', 'Mukta', sans-serif;
 }
 /* .gallery{
     background-color: white;
@@ -34,6 +36,42 @@
 
 .address{
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: flex-start; */
+}
+
+.timings{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.facilitiesList{
+    display: flex;
     flex-direction: column;
+    list-style-type: square;
+    line-height: 0.02;
     align-items: flex-start;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    /* font-size: 10px; */
+}
+
+.btn{
+    background-color: rgb(98, 57, 57);
+}
+
+.timings{
+    color: black;
+}
+/* .rate{
+
+} */
+
+.rbtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
