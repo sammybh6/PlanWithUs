@@ -12,6 +12,7 @@ import StayList from '../components/StayList'
 import GoogleLogin from '../components/GoogleLogin'
 import SingleStay from '../components/SingleStay'
 import SingleHotel from '../components/SingleHotel'
+import PackageList from '../components/PackageList'
 // import TravelSection from '../components/TravelSection'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path='/google' element={<GoogleLogin />} />
           {/* <Route path="/test" element={<Test />} /> */}
+          <Route path='/packages' element={<PackageList />} />
           <Route path="/flights" element={<FlightList />} />
           <Route path="/trains" element={<TrainList />} />
           <Route path='/hotels' element={<HotelList />} />

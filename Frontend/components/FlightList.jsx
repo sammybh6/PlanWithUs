@@ -15,7 +15,7 @@ export default function FlightList() {
     if (location.state === undefined) {
         window.location.href = "/";
     }
-    const data=location.state.data;
+    const data=(location.state)?location.state.data:"";
     const { Source, Destination, DateOfJourney } = data;
 
     

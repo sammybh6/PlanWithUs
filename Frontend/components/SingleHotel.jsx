@@ -15,7 +15,7 @@ export default function SingleHotel() {
     const singleHotel = location.state;
     const hid = (location.state.hotel_id)
     const [hotelImages, setHotelImages] = React.useState();
-
+    const [hotelFacilities, setHotelFacilities] = React.useState();
     const options = {
         method: 'GET',
         url: 'https://booking-com.p.rapidapi.com/v1/hotels/photos',
@@ -24,7 +24,7 @@ export default function SingleHotel() {
             locale: 'en-gb'
         },
         headers: {
-            'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+            'X-RapidAPI-Key': 'eab84aa50dmshc6837e929d1b85bp1cd023jsn0fd6a2f99ee0',
             'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
         }
     };
@@ -53,7 +53,7 @@ export default function SingleHotel() {
             locale: 'en-gb'
         },
         headers: {
-            'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+            'X-RapidAPI-Key': 'eab84aa50dmshc6837e929d1b85bp1cd023jsn0fd6a2f99ee0',
             'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
         }
     };
@@ -92,7 +92,30 @@ export default function SingleHotel() {
                         </ImageList>
                     </div>
                 </Box>
-        <Button onClick={()=>setPageNumber(pageNumber+1)}>Next</Button>
+        <div className={sh.details}>
+                    <div className={sh.heading}>
+                        <h1 style={{ fontSize: '42px' }}>{singleHotel.hotel_name}</h1>
+                        <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{`Ratings: ${singleHotel.review_score}`}</span>
+                    </div>
+                    <div className={sh.address}>
+                        <div style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                        }}>
+                            <h3>{singleHotel.address}</h3>
+                            <h3>{`${singleHotel.city}, ${singleHotel.country_trans}`}</h3>
+                        </div>
+                        <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{`${singleHotel.review_score_word}`}</span>
+                    </div>
+                    <div className={sh.facilities}>
+                        {/* <h3>Facilities</h3> */}
+                        <div className={sh.facilitiesList}>
+                            {hotelFacilities && hotelFacilities.map((item) => (
+                                <ul className={sh.facility}>
+                                    <li>{`${item.facility_name}`}</li>
+                                </ul>
+                            ))}</div>
 
                     </div>
 

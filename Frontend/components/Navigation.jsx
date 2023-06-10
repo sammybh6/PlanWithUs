@@ -1,6 +1,7 @@
 import React from "react";
 import n from "../components/style/Navigation.module.css";
 import LoginModal from "./LoginModal";
+import { Link } from "react-router-dom";
 export const Navigation = (props) => {
   return (
     <nav id={n.menu} className={n.navbarDefault}>
@@ -16,7 +17,13 @@ export const Navigation = (props) => {
         >
           <ul className={n.side}>
             <li>
-              <a href="Flights" >
+              <Link to="/packages" >
+
+                Packages
+              </Link>
+            </li>
+            <li>
+              <a href="flights" >
 
                 Flights
               </a>

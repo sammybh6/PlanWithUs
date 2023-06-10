@@ -21,7 +21,7 @@ export default function HotelList() {
             locale: 'en-gb'
         },
         headers: {
-            'X-RapidAPI-Key': 'ba35c709c4msh1cddd9faeb06c26p1d8858jsnb908a9ad561a',
+            'X-RapidAPI-Key': 'eab84aa50dmshc6837e929d1b85bp1cd023jsn0fd6a2f99ee0',
             'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
         }
     };
@@ -60,7 +60,7 @@ export default function HotelList() {
             include_adjacency: 'true'
         },
         headers: {
-            'X-RapidAPI-Key': 'ba35c709c4msh1cddd9faeb06c26p1d8858jsnb908a9ad561a',
+            'X-RapidAPI-Key': 'eab84aa50dmshc6837e929d1b85bp1cd023jsn0fd6a2f99ee0',
             'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
         }
       };

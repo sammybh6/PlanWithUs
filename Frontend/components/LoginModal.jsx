@@ -11,23 +11,20 @@ import gs from './style/LoginModal.module.css'
 import AuthContext from './context/AuthContext';
 import { useContext } from 'react';
 import { postData } from './utils/Rest'
+import { useForm } from "react-hook-form";
 
 export default function LoginModal() {
+  const { register, handleSubmit } = useForm();
   const auth = useContext(AuthContext)
-  async function reg() {
-    const res = await postData('auth/register', true, {
-      name: "pqr",
-      email: "pqr@gmail.com",
-      password: "pqr123"
-    })
-    console.log(res);
-  }
-
-
-
-
+  
   const [open, setOpen] = React.useState(false);
   const [regOpen, setRegOpen] = React.useState(false);
+
+  const submitHandler = async (data) => {
+    console.log(data);
+    const res= await postData('auth/login',true, data);
+  
+  };
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -71,7 +68,6 @@ export default function LoginModal() {
           backgroundColor: '#562B08',
           color: 'white',
         },
-
       }}>
         Login
       </Button>
@@ -81,46 +77,40 @@ export default function LoginModal() {
           <DialogContentText>
             Login to PlanWithUs
           </DialogContentText>
+          
+          <form onSubmit={handleSubmit(submitHandler)}>
           <TextField
             autoFocus
             margin="dense"
-            id="name"
+            id="email"
             label="Email Address"
             type="email"
             fullWidth
             variant="outlined"
+            {...register("email", { required: true })}
           />
           <TextField
             autoFocus
             margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
+            id="password"
+            label="Password"
+            type="password"
             fullWidth
             variant="outlined"
+            {...register("password", { required: true })}
           />
+          <button type='submit'>Submit</button>
+        </form> 
         </DialogContent>
-        <DialogActions>
-          <Button onClick={reg}>Check</Button>
-
-          <Button onClick={handleClose}>Login</Button>
+        
+          <Button onClick={handleClose} type='submit'>Login</Button>
           <Button onClick={handleReg}>Register</Button><br />
-
-          {/* <ReactGoogleButton
-            type='dark'
-            onClick={() => {
-              window.location.assign(getGoogleOAuthURL())
-            }
-            }
-          /> */}
-
           <button onClick={() => {
             window.location.assign(getGoogleOAuthURL())
           }} className={gs.logbtn} >
             Sign in with Google
           </button>
-        </DialogActions>
-
+          
       </Dialog>
       <RegisterModal isOpen={regOpen} regClose={() => { setRegOpen(false) }} />
     </div>
