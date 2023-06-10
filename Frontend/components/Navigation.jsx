@@ -2,14 +2,19 @@ import React from "react";
 import n from "../components/style/Navigation.module.css";
 import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";
+import { AuthContext } from '../components/context/authContext'
+import { useContext } from 'react'
+
 export const Navigation = (props) => {
+  const auth = useContext(AuthContext);
+  console.log(auth.user);
   return (
     <nav id={n.menu} className={n.navbarDefault}>
-        <div className={n.navbarheader}>
+      <div className={n.navbarheader}>
         <a className={n.navbarBrand} href="#page-top">
-            PlanWithUs
+          PlanWithUs
         </a>
-        <div/>
+        <div />
 
         <div
           className="collapse navbar-collapse"
@@ -43,7 +48,13 @@ export const Navigation = (props) => {
                 AirBnb
               </a>
             </li>
-            <LoginModal/>
+            {/* <LoginModal /> */}
+            {
+              auth.user ?
+                <li>Welcome {auth.user.name}</li>
+                :
+                <LoginModal />
+            }
           </ul>
         </div>
       </div>

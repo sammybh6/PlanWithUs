@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const errorHandler = require('./middleware/error')
 const cors = require('cors');
 dotenv.config({ path: './config/config.env' });
-const mongoSanitize=require('express-mongo-sanitize');
+const mongoSanitize = require('express-mongo-sanitize');
 
 const routes = require('./routes/package');
 
@@ -14,15 +14,22 @@ connectDB();
 
 const app = express();
 
+// const cors = require('cors');
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,            //access-control-allow-credentials:true  //g
+    optionSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 8000;
 const auth = require('./routes/auth');
 //body parser
 app.use(bodyParser.json());
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-}));
+// app.use(cors({
+//     origin: 'http://localhost:3000',  //g
+//     credentials: true,
+// }));
 app.use(cookieParser());
 app.use(mongoSanitize());
 // app.post('/package', (req, res) => {
