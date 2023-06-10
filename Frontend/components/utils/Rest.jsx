@@ -2,28 +2,22 @@ import axios from 'axios'
 
 const Url = 'http://localhost:8000/api/v1/'
 
-const fetchData = (path, auth) => {
+const fetchData = async(path, auth) => {
     if (auth) {
-        axios.get(`${Url}${path}`)
-            .then(function (res) {
-                return res;
-            }).catch(function (error) {
-                console.error(error)
-            })
+        return await axios.get(`${Url}${path}`, {
+            withCredentials: true,
+        })
     }
     else {
-        axios.get(`${Url}${path}`)
-            .then(function (res) {
-                return res;
-            }).catch(function (error) {
-                console.error(error)
-            })
+        return await axios.get(`${Url}${path}`)
     }
 }
 
 const postData = async (path, auth, postd) => {
     if (auth) {
-        const res=await axios.post(`${Url}${path}`, postd)
+        const res=await axios.post(`${Url}${path}`, postd, {
+            withCredentials: true,
+        })
         return res;
 
     }
