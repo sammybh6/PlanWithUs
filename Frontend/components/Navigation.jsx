@@ -4,10 +4,19 @@ import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";
 import { AuthContext } from '../components/context/authContext'
 import { useContext } from 'react'
+import { Button } from "@mui/material";
+import { fetchData } from "./utils/Rest";
 
 export const Navigation = (props) => {
   const auth = useContext(AuthContext);
   console.log(auth.user);
+
+  const logout = async () => {
+    const lo = await fetchData('auth/logout', true);
+    auth.logout();
+  }
+
+
   return (
     <nav id={n.menu} className={n.navbarDefault}>
       <div className={n.navbarheader}>
@@ -51,7 +60,7 @@ export const Navigation = (props) => {
             {/* <LoginModal /> */}
             {
               auth.user ?
-                <li>Welcome {auth.user.name}</li>
+                <li><Button onClick={logout}>Logout</Button></li>
                 :
                 <LoginModal />
             }

@@ -22,6 +22,9 @@ export default function AuthProvider({ children }) {
         fetchUser();
     }, [])
 
+    const logout = () => {
+        setUser(null);
+    }
 
     return (
         <AuthContext.Provider value={ctx}>
