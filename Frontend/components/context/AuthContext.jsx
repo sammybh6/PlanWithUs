@@ -13,18 +13,19 @@ export default function AuthProvider({ children }) {
         setUser(res.data.data);
     }
 
+    const logout = () => {
+        setUser(null);
+    }
     const ctx = {
         fetchUser,
-        user
+        user,
+        logout
     }
 
     useEffect(() => {
         fetchUser();
     }, [])
 
-    const logout = () => {
-        setUser(null);
-    }
 
     return (
         <AuthContext.Provider value={ctx}>

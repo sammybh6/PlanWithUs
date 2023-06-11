@@ -2,20 +2,23 @@ import React from "react";
 import n from "../components/style/Navigation.module.css";
 import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";
-import { AuthContext } from '../components/context/authContext'
+import {AuthContext} from './context/authContext'
 import { useContext } from 'react'
 import { Button } from "@mui/material";
 import { fetchData } from "./utils/Rest";
+import { set } from "react-hook-form";
 
 export const Navigation = (props) => {
   const auth = useContext(AuthContext);
   console.log(auth.user);
 
+
+
+  const [loggedIn, setLoggedIn] = React.useState(auth.user ? true : false);
   const logout = async () => {
     const lo = await fetchData('auth/logout', true);
-    auth.logout();
+    setLoggedIn(false);
   }
-
 
   return (
     <nav id={n.menu} className={n.navbarDefault}>
@@ -59,7 +62,7 @@ export const Navigation = (props) => {
             </li>
             {/* <LoginModal /> */}
             {
-              auth.user ?
+              loggedIn ?
                 <li><Button onClick={logout}>Logout</Button></li>
                 :
                 <LoginModal />
