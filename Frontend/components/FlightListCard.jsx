@@ -3,19 +3,21 @@ import flc from '../components/style/FlightListCard.module.css'
 import { useContext } from 'react'
 import { AuthContext } from './context/authContext'
 import { postData } from './utils/Rest';
-
+import { PackageContext } from './context/PackageContext';
 
 export default function FlightListCard({ flightData }) {
 
     const auth = useContext(AuthContext);
     console.log(auth.user);
-    const bookFlight = async () => {
-        const res = await postData('transport', true, {
-            transportName: `${flightData.children[0].children[2].attributes.CompanyShortName}`,
-            transportDestination: `${flightData.children[0].children[0].attributes.LocationCode}`
-        })
-        return res;
-    }
+    const { packageId } = useContext(PackageContext);
+    console.log(packageId);
+    // const bookFlight = async () => {
+    //     const res = await postData('transport', true, {
+    //         transportName: `${flightData.children[0].children[2].attributes.CompanyShortName}`,
+    //         transportDestination: `${flightData.children[0].children[0].attributes.LocationCode}`
+    //     })
+    //     return res;
+    // }
     return (
         <div className={flc.main}>
             <div className={flc.card} onClick={bookFlight}>
