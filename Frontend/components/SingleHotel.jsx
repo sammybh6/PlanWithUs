@@ -8,6 +8,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import sh from "../components/style/SingleHotel.module.css";
 import Navigation from './Navigation';
 import { Button } from '@mui/material';
+import { postData } from './utils/Rest';
 
 
 export default function SingleHotel() {
@@ -70,6 +71,22 @@ export default function SingleHotel() {
         });
     }
 
+    const pId = sessionStorage.getItem('newPackage')
+
+    const bookStay = async () => {
+        const data = {
+            stayName: `${singleHotel.hotel_name}`,
+            stayAddress: `${singleHotel.address}`,
+            stayDestination: `${singleHotel.city}`,
+            stayType: `Hotel`,
+            stayPrice: `${singleHotel.min_total_price}`
+        }
+        const sHotel = await postData(`package/${pId}/stay`, true, data)
+        console.log(sHotel)
+    }
+
+
+
     return (
         <div>
 
@@ -92,7 +109,7 @@ export default function SingleHotel() {
                         </ImageList>
                     </div>
                 </Box>
-        <div className={sh.details}>
+                <div className={sh.details}>
                     <div className={sh.heading}>
                         <h1 style={{ fontSize: '42px' }}>{singleHotel.hotel_name}</h1>
                         <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{`Ratings: ${singleHotel.review_score}`}</span>
@@ -128,7 +145,7 @@ export default function SingleHotel() {
                     <div className={sh.rbtn}>
                         <h3>{`Rate: ${singleHotel.price_breakdown.all_inclusive_price} ${singleHotel.price_breakdown.currency}`}</h3>
                         <div class="btn-holder">
-                            <button type="button" className='btn'>Click</button>
+                            <button type="submit" onClick={bookStay} className='btn'>Click</button>
                         </div>
                     </div>
                 </div>

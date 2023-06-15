@@ -20,13 +20,19 @@ export default function PackageModal(props) {
     const [open, setOpen] = React.useState(false);
     const [regOpen, setRegOpen] = React.useState(false);
 
+    const [pId, setPId] = React.useState('');
+
     const submitHandler = async (data) => {
         console.log(data);
         const res = await postData('package', true, {
             name: data.text
         });
-
+        console.log(res);
+        setPId(res.data.data._id);
+        console.log(res.data.data._id);
+        // return res;
     };
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -40,8 +46,10 @@ export default function PackageModal(props) {
     //     handleClose();
     // }
 
+
+    console.log(pId);
     const store = () => {
-        sessionStorage.setItem('package', 'new');
+        sessionStorage.setItem('newPackage', `${pId}`);
     }
 
     return (
