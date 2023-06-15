@@ -79,7 +79,7 @@ export default function SingleHotel() {
             stayAddress: `${singleHotel.address}`,
             stayDestination: `${singleHotel.city}`,
             stayType: `Hotel`,
-            stayPrice: `${singleHotel.min_total_price}`
+            stayPrice: `${singleHotel.price_breakdown.all_inclusive_price}`
         }
         const sHotel = await postData(`package/${pId}/stay`, true, data)
         console.log(sHotel)
