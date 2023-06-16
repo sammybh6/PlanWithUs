@@ -11,13 +11,15 @@ export default function FlightListCard({ flightData }) {
     console.log(auth.user);
     const { packageId } = useContext(PackageContext);
     console.log(packageId);
-    // const bookFlight = async () => {
-    //     const res = await postData('transport', true, {
-    //         transportName: `${flightData.children[0].children[2].attributes.CompanyShortName}`,
-    //         transportDestination: `${flightData.children[0].children[0].attributes.LocationCode}`
-    //     })
-    //     return res;
-    // }
+
+    const pId = sessionStorage.getItem('newPackageId');
+    const bookFlight = async () => {
+        const res = await postData(`package/${pId}/transport`, true, {
+            transportName: `${flightData.children[0].children[2].attributes.CompanyShortName}`,
+            transportDestination: `${flightData.children[0].children[0].attributes.LocationCode}`
+        })
+        return res;
+    }
     return (
         <div className={flc.main}>
             <div className={flc.card} onClick={bookFlight}>
