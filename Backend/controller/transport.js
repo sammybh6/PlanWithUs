@@ -5,7 +5,7 @@ const Package = require('../models/Package')
 
 exports.createTransport = asyncHandler(async (req, res, next) => {
 
-    req, body.package = req.params.packageId;
+    req.body.package = req.params.packageId;
 
     const package = Package.findById(req.params.packageId);
 

@@ -16,7 +16,7 @@ import TrainList from "./TrainList";
 import { useContext } from "react";
 import { PackageContext } from "./context/PackageContext";
 import { postData } from "./utils/Rest";
-
+import PackageModal from "./PackageModal";
 
 
 export default function TravelForm() {
@@ -46,6 +46,21 @@ export default function TravelForm() {
       },
     },
   });
+
+  const packageCreated = () => {
+    if (sessionStorage.getItem("package")) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  const handleModal = () => {
+
+    if (!packageCreated()) {
+      setOpenModal(true);
+    }
+  }
 
   return (
 
@@ -118,6 +133,7 @@ export default function TravelForm() {
           </Button>
         </ThemeProvider>
       </form>
+      <PackageModal open={openModal} handleClose={() => { setOpenModal(false) }} />
       <TravelSection data={{ data }} />
     </div>
   )

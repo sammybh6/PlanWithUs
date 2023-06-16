@@ -10,6 +10,8 @@ import Navigation from './Navigation';
 export default function SingleStay() {
     const location = useLocation();
     const singleStay = location.state;
+
+
     return (
         <div >
             <Navigation />
