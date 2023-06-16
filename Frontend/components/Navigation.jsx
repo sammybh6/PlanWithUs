@@ -11,12 +11,10 @@ import { set } from "react-hook-form";
 export const Navigation = (props) => {
   const auth = useContext(AuthContext);
   console.log(auth.user);
-
-
-
   const [loggedIn, setLoggedIn] = React.useState(auth.user ? true : false);
   const logout = async () => {
     const lo = await fetchData('auth/logout', true);
+    auth.logout();
     setLoggedIn(false);
   }
 
@@ -62,7 +60,7 @@ export const Navigation = (props) => {
             </li>
             {/* <LoginModal /> */}
             {
-              loggedIn ?
+              auth.user ?
                 <li><Button onClick={logout}>Logout</Button></li>
                 :
                 <LoginModal />
