@@ -35,7 +35,7 @@ export default function StayForms() {
 
   // sessionStorage.getItem("package")
   const packageCreated = () => {
-    if (sessionStorage.getItem("package")) {
+    if (sessionStorage.getItem("newPackage")) {
       return true;
     }
     else {
