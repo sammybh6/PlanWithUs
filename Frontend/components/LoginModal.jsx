@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 export default function LoginModal() {
   const { register, handleSubmit } = useForm();
   const auth = useContext(AuthContext)
-  
+
   const [open, setOpen] = React.useState(false);
   const [regOpen, setRegOpen] = React.useState(false);
 
@@ -77,40 +77,39 @@ export default function LoginModal() {
           <DialogContentText>
             Login to PlanWithUs
           </DialogContentText>
-          
+
           <form onSubmit={handleSubmit(submitHandler)}>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="outlined"
-            {...register("email", { required: true })}
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="password"
-            label="Password"
-            type="password"
-            fullWidth
-            variant="outlined"
-            {...register("password", { required: true })}
-          />
-          <button type='submit'>Submit</button>
-        </form> 
+            <TextField
+              autoFocus
+              margin="dense"
+              id="email"
+              label="Email Address"
+              type="email"
+              fullWidth
+              variant="outlined"
+              {...register("email", { required: true })}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="password"
+              label="Password"
+              type="password"
+              fullWidth
+              variant="outlined"
+              {...register("password", { required: true })}
+            />
+            <button type='submit'>Submit</button>
+          </form>
         </DialogContent>
-        
-          <Button onClick={handleClose} type='submit'>Login</Button>
-          <Button onClick={handleReg}>Register</Button><br />
-          <button onClick={() => {
-            window.location.assign(getGoogleOAuthURL())
-          }} className={gs.logbtn} >
-            Sign in with Google
-          </button>
-          
+        <Button onClick={handleClose} type='submit'>Login</Button>
+        <Button onClick={handleReg}>Register</Button><br />
+        <button onClick={() => {
+          window.location.assign(getGoogleOAuthURL())
+        }} className={gs.logbtn} >
+          Sign in with Google
+        </button>
+
       </Dialog>
       <RegisterModal isOpen={regOpen} regClose={() => { setRegOpen(false) }} />
     </div>

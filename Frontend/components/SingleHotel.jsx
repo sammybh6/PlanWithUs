@@ -7,8 +7,9 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import sh from "../components/style/SingleHotel.module.css";
 import Navigation from './Navigation';
-import { Button } from '@mui/material';
-
+// import { Button } from '@mui/material';
+import { postData } from './utils/Rest';
+import Button from '@mui/material/Button';
 
 export default function SingleHotel() {
     const location = useLocation()
@@ -70,6 +71,22 @@ export default function SingleHotel() {
         });
     }
 
+    const pId = sessionStorage.getItem('newPackage')
+
+    const bookStay = async () => {
+        const data = {
+            stayName: `${singleHotel.hotel_name}`,
+            stayAddress: `${singleHotel.address}`,
+            stayDestination: `${singleHotel.city}`,
+            stayType: `Hotel`,
+            stayPrice: `${singleHotel.price_breakdown.all_inclusive_price}`
+        }
+        const sHotel = await postData(`package/${pId}/stay`, true, data)
+        console.log(sHotel)
+    }
+
+
+
     return (
         <div>
 
@@ -92,7 +109,7 @@ export default function SingleHotel() {
                         </ImageList>
                     </div>
                 </Box>
-        <div className={sh.details}>
+                <div className={sh.details}>
                     <div className={sh.heading}>
                         <h1 style={{ fontSize: '42px' }}>{singleHotel.hotel_name}</h1>
                         <span style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{`Ratings: ${singleHotel.review_score}`}</span>
@@ -127,9 +144,20 @@ export default function SingleHotel() {
                     <br />
                     <div className={sh.rbtn}>
                         <h3>{`Rate: ${singleHotel.price_breakdown.all_inclusive_price} ${singleHotel.price_breakdown.currency}`}</h3>
-                        <div class="btn-holder">
-                            <button type="button" className='btn'>Click</button>
-                        </div>
+                        {/* <div class="btn-holder"> */}
+                        {/* <button type="submit" onClick={bookStay} className='btn'>Click</button> */}
+                        <Button variant="contained" onClick={bookStay} style={{
+                            color: '#562B08',
+                            backgroundColor: 'white',
+                            borderRadius: '20px',
+                            border: '2px solid #562B08',
+                            padding: '10px 20px',
+                            '&:hover': {
+                                backgroundColor: '#562B08',
+                                color: 'white',
+                            }
+                        }}>Book</Button>
+                        {/* </div> */}
                     </div>
                 </div>
             </div>

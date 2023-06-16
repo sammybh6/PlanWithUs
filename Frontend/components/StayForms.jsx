@@ -11,42 +11,62 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import { FetchData, postData } from "../utils/REST";
 import StaySection from "./StaySection"
 import { Button } from "@mui/material";
+import PackageModal from "./PackageModal";
 export default function StayForms() {
-    const { register, handleSubmit } = useForm();
-    const [selectedDate, handleDateChange] = React.useState(new Date());
-    const [selectedDate1, handleDateChange1] = React.useState(new Date());
-    const [data, setData] = React.useState();
-    const submitHandler = (data) => {
-        data["DateofArrival"] = dayjs(selectedDate).format("YYYY-MM-DD");
-        data["DateofDeparture"] = dayjs(selectedDate1).format("YYYY-MM-DD");
-        console.log(data);
-        console.log(data);
-        setData(data);
-    };
+  const { register, handleSubmit } = useForm();
+  const [selectedDate, handleDateChange] = React.useState(new Date());
+  const [selectedDate1, handleDateChange1] = React.useState(new Date());
+  const [data, setData] = React.useState();
+  const submitHandler = (data) => {
+    data["DateofArrival"] = dayjs(selectedDate).format("YYYY-MM-DD");
+    data["DateofDeparture"] = dayjs(selectedDate1).format("YYYY-MM-DD");
+    console.log(data);
+    console.log(data);
+    setData(data);
+  };
 
-    const theme = createTheme({
-      palette: {
-        primary: {
-          main: "#562B08",
-        },
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#562B08",
       },
-    });
-    
+    },
+  });
+
+  // sessionStorage.getItem("package")
+  const packageCreated = () => {
+    if (sessionStorage.getItem("package")) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  const handleModal = () => {
+
+    if (!packageCreated()) {
+      setOpenModal(true);
+    }
+  }
+
+
+  const [openModal, setOpenModal] = React.useState(false);
+
   return (
     <div>
-     <form on onSubmit={handleSubmit(submitHandler)} className={fs.form}>
+      <form onSubmit={handleSubmit(submitHandler)} className={fs.form}>
         <TextField
-            variant="outlined"
-            className={fs.destination}
-            // margin="normal"
-            required
-            id="Destination"
-            label="Destination"
-            name="Destination"
-            autoComplete="Destination"
-            // autoFocus
-            sx={{ borderColor: '#562B08' }}
-            {...register("Destination")}
+          variant="outlined"
+          className={fs.destination}
+          // margin="normal"
+          required
+          id="Destination"
+          label="Destination"
+          name="Destination"
+          autoComplete="Destination"
+          // autoFocus
+          sx={{ borderColor: '#562B08' }}
+          {...register("Destination")}
         />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DesktopDatePicker
@@ -85,27 +105,30 @@ export default function StayForms() {
           />
         </LocalizationProvider>
         <TextField
-            className={fs.no_of_people}
-            variant="outlined"
-            // margin="normal"
-            required
-            id="No_of_people"
-            label="No of people"
-            name="No_of_people"
-            autoComplete="No_of_people"
-            // autoFocus
-            {...register("No_of_people")}
+          className={fs.no_of_people}
+          variant="outlined"
+          // margin="normal"
+          required
+          id="No_of_people"
+          label="No of people"
+          name="No_of_people"
+          autoComplete="No_of_people"
+          // autoFocus
+          {...register("No_of_people")}
         />
         <ThemeProvider theme={theme}>
-          <Button type="submit" 
-          variant="contained" 
-          color="primary" 
-          className={fs.btn}>
+          <Button type="submit"
+            variant="contained"
+            color="primary"
+            className={fs.btn}
+            onClick={handleModal}
+          >
             Submit
           </Button>
         </ThemeProvider>
-     </form>
-     <StaySection data={data}/>
+      </form>
+      <PackageModal open={openModal} handleClose={() => { setOpenModal(false) }} />
+      <StaySection data={data} />
     </div>
   )
 }

@@ -1,12 +1,15 @@
-const express=require('express');
+const express = require('express');
 
-const {createTransport,getTransports}=require('../controller/transport');
-const {protect}=require('../middleware/auth');
-
-const router=express.Router();
-
-router.route('/').post(protect,createTransport).get(protect,getTransports);
-router.route('/:id').get(protect,getTransports);
+const { createTransport, getTransports, updateTransport } = require('../controller/transport');
+const { protect } = require('../middleware/auth');
 
 
-module.exports=router;
+const router = express.Router({ mergeParams: true });
+
+router.route('/').post(protect, createTransport).get(protect, getTransports);
+router.route('/:id').get(protect, getTransports).put(protect, updateTransport);
+
+
+module.exports = router;
+
+

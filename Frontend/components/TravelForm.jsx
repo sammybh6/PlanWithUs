@@ -13,12 +13,20 @@ import purple from "@mui/material/colors/purple";
 import { Button } from "@mui/material";
 import FlightList from "./FlightList";
 import TrainList from "./TrainList";
-
-
+import { useContext } from "react";
+import { PackageContext } from "./context/PackageContext";
+import { postData } from "./utils/Rest";
 
 
 
 export default function TravelForm() {
+  const { packageId, getPackageId } = useContext(PackageContext);
+  const newPackage = async () => {
+    const res = await postData('package', true, {
+      name: "New Package"
+    })
+    getPackageId(res.data._id);
+  }
   const [data, setData] = React.useState();
   const { register, handleSubmit } = useForm();
   const [selectedDate, handleDateChange] = React.useState(new Date());
@@ -28,6 +36,7 @@ export default function TravelForm() {
     data["Source"] = data["Source"].toLowerCase();
     data["Destination"] = data["Destination"].toLowerCase();
     setData(data);
+    packageId ? console.log(packageId) : newPackage();
   };
 
   const theme = createTheme({

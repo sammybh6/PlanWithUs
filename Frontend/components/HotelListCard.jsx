@@ -22,7 +22,6 @@ export default function HotelListCard({ hotel }) {
                             <p>{ }</p></div>
                         <div className={slc.description}>
                             <p style={{ color: "#562B08", fontWeight: "bold", fontSize: "1em" }}>{hotel.hotel_name}</p>
-
                         </div>
                     </div>
                 </div>
