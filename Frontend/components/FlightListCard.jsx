@@ -7,12 +7,12 @@ import { PackageContext } from './context/PackageContext';
 
 export default function FlightListCard({ flightData }) {
 
-    const auth = useContext(AuthContext);
-    console.log(auth.user);
-    const { packageId } = useContext(PackageContext);
-    console.log(packageId);
+    // const auth = useContext(AuthContext);
+    // console.log(auth.user);
+    // const { packageId } = useContext(PackageContext);
+    // console.log(packageId);
 
-    const pId = sessionStorage.getItem('newPackageId');
+    const pId = sessionStorage.getItem('newPackage');
     const bookFlight = async () => {
         const res = await postData(`package/${pId}/transport`, true, {
             transportName: `${flightData.children[0].children[2].attributes.CompanyShortName}`,

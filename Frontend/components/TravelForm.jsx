@@ -20,13 +20,13 @@ import PackageModal from "./PackageModal";
 
 
 export default function TravelForm() {
-  const { packageId, getPackageId } = useContext(PackageContext);
-  const newPackage = async () => {
-    const res = await postData('package', true, {
-      name: "New Package"
-    })
-    getPackageId(res.data._id);
-  }
+  // const { packageId, getPackageId } = useContext(PackageContext);
+  // const newPackage = async () => {
+  //   const res = await postData('package', true, {
+  //     name: "New Package"
+  //   })
+  //   getPackageId(res.data._id);
+  // }
   const [data, setData] = React.useState();
   const { register, handleSubmit } = useForm();
   const [selectedDate, handleDateChange] = React.useState(new Date());
@@ -36,7 +36,7 @@ export default function TravelForm() {
     data["Source"] = data["Source"].toLowerCase();
     data["Destination"] = data["Destination"].toLowerCase();
     setData(data);
-    packageId ? console.log(packageId) : newPackage();
+    // packageId ? console.log(packageId) : newPackage();
   };
 
   const theme = createTheme({
@@ -48,7 +48,7 @@ export default function TravelForm() {
   });
 
   const packageCreated = () => {
-    if (sessionStorage.getItem("package")) {
+    if (sessionStorage.getItem("newPackage")) {
       return true;
     }
     else {
@@ -62,6 +62,7 @@ export default function TravelForm() {
     }
   }
 
+  const [openModal, setOpenModal] = React.useState(false);
   return (
 
     <div>
@@ -128,7 +129,8 @@ export default function TravelForm() {
           <Button type="submit"
             variant="contained"
             color="primary"
-            className={fs.btn}>
+            className={fs.btn}
+            onClick={handleModal}>
             Submit
           </Button>
         </ThemeProvider>

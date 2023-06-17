@@ -21,9 +21,11 @@ export const Navigation = (props) => {
   return (
     <nav id={n.menu} className={n.navbarDefault}>
       <div className={n.navbarheader}>
-        <a className={n.navbarBrand} href="#page-top">
-          PlanWithUs
-        </a>
+        <Link to="/" >
+          <a className={n.navbarBrand} >
+            PlanWithUs
+          </a>
+        </Link>
         <div />
 
         <div

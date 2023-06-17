@@ -12,6 +12,7 @@ import AuthContext from './context/authContext';
 import { useContext } from 'react';
 import { postData } from './utils/Rest'
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export default function PackageModal(props) {
     const { register, handleSubmit } = useForm();
@@ -50,11 +51,12 @@ export default function PackageModal(props) {
     console.log(pId);
     const store = () => {
         sessionStorage.setItem('newPackage', `${pId}`);
+        handleClose();
     }
 
     return (
         <div>
-            <Button variant="contained" onClick={handleClickOpen} sx={{
+            {/* <Button variant="contained" onClick={handleClickOpen} sx={{
                 color: '#562B08',
                 backgroundColor: 'white',
                 borderRadius: '20px',
@@ -65,8 +67,8 @@ export default function PackageModal(props) {
                     color: 'white',
                 },
             }}>
-                Submit
-            </Button>
+                Submit!
+            </Button> */}
             <Dialog open={props.open} onClose={handleClose}>
                 <DialogTitle>Submit</DialogTitle>
                 <DialogContent>
@@ -97,7 +99,9 @@ export default function PackageModal(props) {
               {...register("password", { required: true })}
             /> */}
                         <button type='submit' onClick={store}>Create</button>
-                        <button type='submit'>Update old package</button>
+                        <Link to='/packages'>
+                            <button >Update old package</button>
+                        </Link>
                     </form>
                 </DialogContent>
             </Dialog>
