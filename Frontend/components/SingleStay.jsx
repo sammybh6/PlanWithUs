@@ -6,7 +6,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { useLocation } from 'react-router-dom';
 import { borderRight } from '@mui/system';
 import Navigation from './Navigation';
-import sh from "../components/style/singleHotel.module.css";
+import sh from "../components/style/SingleHotel.module.css";
 import { postData } from './utils/Rest';
 import Button from '@mui/material/Button';
 
