@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import RegisterModal from './RegisterModal';
 import gs from './style/LoginModal.module.css'
-import {AuthContext} from './context/authContext';
+import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
 import { postData } from './utils/Rest'
 import { useForm } from "react-hook-form";
@@ -22,7 +22,7 @@ export default function LoginModal() {
 
   const submitHandler = async (data) => {
     console.log(data);
-    const res= await postData('auth/login',true, data);
+    const res = await postData('auth/login', true, data);
     auth.login();
   };
   const handleClickOpen = () => {

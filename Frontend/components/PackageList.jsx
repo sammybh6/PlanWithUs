@@ -1,7 +1,7 @@
 import React from 'react'
 import { fetchData } from './utils/Rest'
 import { useContext } from 'react'
-import {AuthContext} from './context/authContext'
+import { AuthContext } from './context/AuthContext'
 
 export default function PackageList() {
 

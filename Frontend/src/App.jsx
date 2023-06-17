@@ -13,7 +13,7 @@ import GoogleLogin from '../components/GoogleLogin'
 import SingleStay from '../components/SingleStay'
 import SingleHotel from '../components/SingleHotel'
 import PackageList from '../components/PackageList'
-import AuthProvider from '../components/context/authContext'
+import AuthProvider from '../components/context/AuthContext'
 import PackageProvider from '../components/context/PackageContext'
 // import TravelSection from '../components/TravelSection'
 

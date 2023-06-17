@@ -2,7 +2,7 @@ import React from "react";
 import n from "../components/style/Navigation.module.css";
 import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";
-import { AuthContext } from './context/authContext'
+import { AuthContext } from './context/AuthContext'
 import { useContext } from 'react'
 import { Button } from "@mui/material";
 import { fetchData } from "./utils/Rest";
