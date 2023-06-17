@@ -7,13 +7,15 @@ exports.createTransport = asyncHandler(async (req, res, next) => {
 
     req.body.package = req.params.packageId;
 
-    const package = Package.findById(req.params.packageId);
+    const package = await Package.findById(req.params.packageId);
 
     if (!package) {
         console.log('package not present.')
     }
 
     const transports = await Transport.create(req.body);
+    package.modeOfTransport = (transports._id);
+    await package.save();
     res.status(201).json({
         success: true,
         data: transports
