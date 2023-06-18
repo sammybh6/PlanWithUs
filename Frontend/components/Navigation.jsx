@@ -11,6 +11,7 @@ import { set } from "react-hook-form";
 export const Navigation = (props) => {
   const auth = useContext(AuthContext);
   console.log(auth.user);
+  // const cookie = cookies.get('token');
   const [loggedIn, setLoggedIn] = React.useState(auth.user ? true : false);
   const logout = async () => {
     const lo = await fetchData('auth/logout', true);

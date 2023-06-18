@@ -31,7 +31,9 @@ export default function PackageModal(props) {
         console.log(res);
         setPId(res.data.data._id);
         console.log(res.data.data._id);
+        store();
         // return res;
+        // handleClose();
     };
 
     const handleClickOpen = () => {
@@ -48,10 +50,10 @@ export default function PackageModal(props) {
     // }
 
 
-    console.log(pId);
+    // console.log(pId);
     const store = () => {
+        console.log(pId);
         sessionStorage.setItem('newPackage', `${pId}`);
-        handleClose();
     }
 
     return (
@@ -98,7 +100,7 @@ export default function PackageModal(props) {
               variant="outlined"
               {...register("password", { required: true })}
             /> */}
-                        <button type='submit' onClick={store}>Create</button>
+                        <button type='submit'>Create</button>
                         <Link to='/packages'>
                             <button >Update old package</button>
                         </Link>
