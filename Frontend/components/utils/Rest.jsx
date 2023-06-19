@@ -27,5 +27,33 @@ const postData = async (path, auth, postd) => {
     }
 }
 
+const putData = async (path, auth, postd) => {
+    if (auth) {
+        const res = await axios.put(`${Url}${path}`, postd, {
+            withCredentials: true,
+        })
+        return res;
 
-export { fetchData, postData } 
+    }
+    else {
+        const res = await axios.put(`${Url}${path}`, postd)
+        return res.data;
+    }
+}
+
+const deleteData = async (path, auth) => {
+    if (auth) {
+        const res = await axios.delete(`${Url}${path}`, {
+            withCredentials: true,
+        })
+        return res;
+
+    }
+    else {
+        const res = await axios.delete(`${Url}${path}`)
+        return res.data;
+    }
+}
+
+
+export { fetchData, postData, putData, deleteData } 

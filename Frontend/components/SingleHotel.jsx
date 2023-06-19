@@ -89,7 +89,6 @@ export default function SingleHotel() {
 
     return (
         <div>
-
             <Navigation />
             <div classname={sh.gallery} style={{ display: 'flex', flexDirection: 'row', padding: '30px' }}>
                 <Box style={{ width: '45vw', height: '80vh', overflowY: 'scroll' }}>

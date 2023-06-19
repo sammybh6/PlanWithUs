@@ -1,7 +1,7 @@
 import React from 'react'
 import flc from '../components/style/FlightListCard.module.css'
 import { useContext } from 'react'
-import { AuthContext } from './context/authContext'
+import { AuthContext } from './context/AuthContext'
 import { postData } from './utils/Rest';
 import { PackageContext } from './context/PackageContext';
 

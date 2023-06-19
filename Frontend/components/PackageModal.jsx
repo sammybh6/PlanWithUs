@@ -8,10 +8,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import RegisterModal from './RegisterModal';
 import gs from './style/LoginModal.module.css'
-import AuthContext from './context/authContext';
+import AuthContext from './context/AuthContext';
 import { useContext } from 'react';
 import { postData } from './utils/Rest'
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export default function PackageModal(props) {
     const { register, handleSubmit } = useForm();
@@ -30,7 +31,9 @@ export default function PackageModal(props) {
         console.log(res);
         setPId(res.data.data._id);
         console.log(res.data.data._id);
+        store();
         // return res;
+        // handleClose();
     };
 
     const handleClickOpen = () => {
@@ -47,14 +50,15 @@ export default function PackageModal(props) {
     // }
 
 
-    console.log(pId);
+    // console.log(pId);
     const store = () => {
+        console.log(pId);
         sessionStorage.setItem('newPackage', `${pId}`);
     }
 
     return (
         <div>
-            <Button variant="contained" onClick={handleClickOpen} sx={{
+            {/* <Button variant="contained" onClick={handleClickOpen} sx={{
                 color: '#562B08',
                 backgroundColor: 'white',
                 borderRadius: '20px',
@@ -65,8 +69,8 @@ export default function PackageModal(props) {
                     color: 'white',
                 },
             }}>
-                Submit
-            </Button>
+                Submit!
+            </Button> */}
             <Dialog open={props.open} onClose={handleClose}>
                 <DialogTitle>Submit</DialogTitle>
                 <DialogContent>
@@ -96,8 +100,10 @@ export default function PackageModal(props) {
               variant="outlined"
               {...register("password", { required: true })}
             /> */}
-                        <button type='submit' onClick={store}>Create</button>
-                        <button type='submit'>Update old package</button>
+                        <button type='submit'>Create</button>
+                        <Link to='/packages'>
+                            <button >Update old package</button>
+                        </Link>
                     </form>
                 </DialogContent>
             </Dialog>

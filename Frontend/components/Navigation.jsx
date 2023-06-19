@@ -2,7 +2,7 @@ import React from "react";
 import n from "../components/style/Navigation.module.css";
 import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";
-import { AuthContext } from './context/authContext'
+import { AuthContext } from './context/AuthContext'
 import { useContext } from 'react'
 import { Button } from "@mui/material";
 import { fetchData } from "./utils/Rest";
@@ -11,6 +11,7 @@ import { set } from "react-hook-form";
 export const Navigation = (props) => {
   const auth = useContext(AuthContext);
   console.log(auth.user);
+  // const cookie = cookies.get('token');
   const [loggedIn, setLoggedIn] = React.useState(auth.user ? true : false);
   const logout = async () => {
     const lo = await fetchData('auth/logout', true);
@@ -21,9 +22,11 @@ export const Navigation = (props) => {
   return (
     <nav id={n.menu} className={n.navbarDefault}>
       <div className={n.navbarheader}>
-        <a className={n.navbarBrand} href="#page-top">
-          PlanWithUs
-        </a>
+        <Link to="/" >
+          <a className={n.navbarBrand} >
+            PlanWithUs
+          </a>
+        </Link>
         <div />
 
         <div
