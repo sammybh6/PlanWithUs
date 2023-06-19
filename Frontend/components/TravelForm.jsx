@@ -62,6 +62,7 @@ export default function TravelForm() {
     }
   }
 
+  const [openModal, setOpenModal] = React.useState(false);
   return (
 
     <div>
@@ -133,7 +134,7 @@ export default function TravelForm() {
           </Button>
         </ThemeProvider>
       </form>
-      <PackageModal open={openModal} handleClose={() => { setOpenModal(false) }} />
+      <PackageModal open={openModal} handleClose={(handleModal) => { setOpenModal(false) }} />
       <TravelSection data={{ data }} />
     </div>
   )
