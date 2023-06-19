@@ -58,8 +58,8 @@ exports.deletePackage = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`Package not found with id of ${req.params.id}`, 404))
     }
 
-    const stay = await Stay.deleteMany({ package: req.params.id });
-    await stay.remove();
+    // const stay = await Stay.deleteMany({ package: req.params.id });
+    // await stay.remove();
 
     res.status(200).json({ success: true, data: {} })
 });
