@@ -15,10 +15,10 @@ import SingleHotel from '../components/SingleHotel'
 import PackageList from '../components/PackageList'
 import AuthProvider from '../components/context/AuthContext'
 import PackageProvider from '../components/context/PackageContext'
+import  About from '../components/About'
 // import TravelSection from '../components/TravelSection'
 
 function App() {
-  const [count, setCount] = useState(0)
   // <FlightList data={flightData} />
   return (
     <div>
@@ -28,7 +28,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path='/google' element={<GoogleLogin />} />
-              {/* <Route path="/test" element={<Test />} /> */}
               <Route path='/packages' element={<PackageList />} />
               <Route path="/flights" element={<FlightList />} />
               <Route path="/trains" element={<TrainList />} />
@@ -36,6 +35,7 @@ function App() {
               <Route path='/stays' element={<StayList />} />
               <Route path='/singleStay' element={<SingleStay />} />
               <Route path='/singleHotel' element={<SingleHotel />} />
+              <Route path='/about' element={<About/>}/>
             </Routes>
           </BrowserRouter>
         </PackageProvider>

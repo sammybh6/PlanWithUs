@@ -62,7 +62,7 @@ const sendTokenResponse = (user, statusCode, res) => {
     const token = user.getSignedJwtToken();
     const options = {
         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
-        httpOnly: true,
+
         
     };
 
@@ -182,7 +182,6 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
 exports.logout = asyncHandler(async (req, res, next) => {
     res.cookie('token',"none" , {
         expires: new Date(Date.now() + 10 * 1000),
-        httpOnly: true
     })
 
     res.status(200).json({

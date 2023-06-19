@@ -7,18 +7,21 @@ import { useContext } from 'react'
 import { Button } from "@mui/material";
 import { fetchData } from "./utils/Rest";
 import { set } from "react-hook-form";
+import Cookies from 'js-cookie';
 
 export const Navigation = (props) => {
   const auth = useContext(AuthContext);
-  console.log(auth.user);
-  // const cookie = cookies.get('token');
-  const [loggedIn, setLoggedIn] = React.useState(auth.user ? true : false);
+  // const [cookies, setCookie, removeCookie] = useCookies();
+  
+  const [cookie,setCookie] = React.useState(Cookies.get('token'));
+
   const logout = async () => {
     const lo = await fetchData('auth/logout', true);
+    Cookies.remove('token');
+    setCookie(null);
     auth.logout();
-    setLoggedIn(false);
   }
-
+  
   return (
     <nav id={n.menu} className={n.navbarDefault}>
       <div className={n.navbarheader}>
@@ -40,33 +43,25 @@ export const Navigation = (props) => {
                 Packages
               </Link>
             </li>
-            <li>
-              <a href="flights" >
-
-                Flights
-              </a>
-            </li>
-            <li>
-              <a href="trains" >
-                Trains
-              </a>
-            </li>
-            <li>
-              <a href="hotels" >
-                Hotels
-              </a>
-            </li>
-            <li>
-              <a href="stays" >
-                AirBnb
-              </a>
-            </li>
+            
             {/* <LoginModal /> */}
             {
-              auth.user ?
-                <li><Button onClick={logout}>Logout</Button></li>
+              cookie?
+                <li><Button variant="contained" onClick={logout} sx={{
+        color: '#562B08',
+        backgroundColor: 'white',
+        borderRadius: '20px',
+        border: '2px solid #562B08',
+        padding: '10px 20px',
+        '&:hover': {
+          backgroundColor: '#562B08',
+          color: 'white',
+        },
+      }}>
+        Logout
+      </Button></li>
                 :
-                <LoginModal />
+                <LoginModal handleCookie={()=> setCookie(Cookies.get('token'))}/>
             }
           </ul>
         </div>

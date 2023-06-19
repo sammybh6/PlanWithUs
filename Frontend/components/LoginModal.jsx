@@ -13,7 +13,7 @@ import { useContext } from 'react';
 import { postData } from './utils/Rest'
 import { useForm } from "react-hook-form";
 
-export default function LoginModal() {
+export default function LoginModal({ handleCookie}) {
   const { register, handleSubmit } = useForm();
   const auth = useContext(AuthContext)
 
@@ -24,6 +24,7 @@ export default function LoginModal() {
     console.log(data);
     const res = await postData('auth/login', true, data);
     auth.login();
+    handleCookie();
   };
   const handleClickOpen = () => {
     setOpen(true);
@@ -99,7 +100,7 @@ export default function LoginModal() {
               variant="outlined"
               {...register("password", { required: true })}
             />
-            <button type='submit'>Submit</button>
+            <button onClick={handleClose} type='submit'>Submit</button>
           </form>
         </DialogContent>
         <Button onClick={handleClose} type='submit'>Login</Button>
