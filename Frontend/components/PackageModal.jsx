@@ -13,6 +13,7 @@ import { useContext } from 'react';
 import { postData } from './utils/Rest'
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function PackageModal(props) {
     const { register, handleSubmit } = useForm();
@@ -55,6 +56,15 @@ export default function PackageModal(props) {
         console.log(pId);
         sessionStorage.setItem('newPackage', `${pId}`);
     }
+
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: "#562B08",
+            },
+        },
+    });
 
     return (
         <div>
@@ -100,10 +110,12 @@ export default function PackageModal(props) {
               variant="outlined"
               {...register("password", { required: true })}
             /> */}
-                        <button type='submit'>Create</button>
-                        <Link to='/packages'>
-                            <button >Update old package</button>
-                        </Link>
+                        <ThemeProvider theme={theme} >
+                            <Button type='submit'>Create</Button>
+                            <Link to='/packages'>
+                                <Button >Update old package</Button>
+                            </Link>
+                        </ThemeProvider>
                     </form>
                 </DialogContent>
             </Dialog>

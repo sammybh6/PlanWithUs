@@ -6,10 +6,18 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+// import { ThemeProvider } from '@emotion/react';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+export default function RegisterModal({ isOpen, regClose }) {
 
-export default function RegisterModal({isOpen,regClose}) {
 
-
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#562B08",
+      },
+    },
+  });
   const handleClose = () => {
     setOpen(false);
   };
@@ -20,14 +28,13 @@ export default function RegisterModal({isOpen,regClose}) {
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Register for an account
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
+            label="Name"
             type="email"
             fullWidth
             variant="standard"
@@ -35,16 +42,33 @@ export default function RegisterModal({isOpen,regClose}) {
           <TextField
             autoFocus
             margin="dense"
-            id="name"
+            id="email"
             label="Email Address"
             type="email"
+            fullWidth
+            variant="standard"
+
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="password"
+            label="Password"
+            type="password"
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={regClose}>Cancel</Button>
-          <Button onClick={regClose}>Subscribe</Button>
+          <ThemeProvider theme={theme}>
+            <Button variant="contained"
+              color="primary"
+              onClick={regClose}>Cancel</Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={regClose}>Create</Button>
+          </ThemeProvider>
         </DialogActions>
       </Dialog>
     </div>

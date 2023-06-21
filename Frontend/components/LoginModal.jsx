@@ -12,8 +12,9 @@ import { AuthContext } from './context/AuthContext';
 import { useContext } from 'react';
 import { postData } from './utils/Rest'
 import { useForm } from "react-hook-form";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-export default function LoginModal({ handleCookie}) {
+export default function LoginModal({ handleCookie }) {
   const { register, handleSubmit } = useForm();
   const auth = useContext(AuthContext)
 
@@ -38,6 +39,16 @@ export default function LoginModal({ handleCookie}) {
     setRegOpen(true);
     handleClose();
   }
+
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#562B08",
+      },
+    },
+  });
+
 
   const getGoogleOAuthURL = () => {
     const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth'
@@ -73,44 +84,51 @@ export default function LoginModal({ handleCookie}) {
         Login
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>PlanWithUs</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Login to PlanWithUs
-          </DialogContentText>
+        <ThemeProvider theme={theme}>
+          <DialogTitle>PlanWithUs</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Login to PlanWithUs
+            </DialogContentText>
 
-          <form onSubmit={handleSubmit(submitHandler)}>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="email"
-              label="Email Address"
-              type="email"
-              fullWidth
-              variant="outlined"
-              {...register("email", { required: true })}
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="password"
-              label="Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-              {...register("password", { required: true })}
-            />
-            <button onClick={handleClose} type='submit'>Submit</button>
-          </form>
-        </DialogContent>
-        <Button onClick={handleClose} type='submit'>Login</Button>
-        <Button onClick={handleReg}>Register</Button><br />
-        <button onClick={() => {
-          window.location.assign(getGoogleOAuthURL())
-        }} className={gs.logbtn} >
-          Sign in with Google
-        </button>
+            <form onSubmit={handleSubmit(submitHandler)}>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="email"
+                label="Email Address"
+                type="email"
+                fullWidth
+                variant="outlined"
+                {...register("email", { required: true })}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="password"
+                label="Password"
+                type="password"
+                fullWidth
+                variant="outlined"
+                {...register("password", { required: true })}
+              />
+              {/* <button onClick={handleClose} type='submit'>Submit</button> */}
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleClose} type='submit'>Login</Button>
+            </form>
+          </DialogContent>
+          <Button
 
+            onClick={handleReg}>Register</Button>
+          <br />
+          <button onClick={() => {
+            window.location.assign(getGoogleOAuthURL())
+          }} className={gs.logbtn} >
+            Sign in with Google
+          </button>
+        </ThemeProvider>
       </Dialog>
       <RegisterModal isOpen={regOpen} regClose={() => { setRegOpen(false) }} />
     </div>

@@ -24,46 +24,43 @@ export default function TravelCard(props) {
 
   const [srcCode, setSrcCode] = React.useState("");
   const [destCode, setDestCode] = React.useState("");
-  console.log(props.data); 
+  console.log(props.data);
   const handleIconClicks = name => () => {
     console.log(name);
   }
   if (props.icon === "flight") {
 
-    const srcAiprort = (props.data.data)?props.data.data.Source:"";
-    const destAiprort = (props.data.data)?props.data.data.Destination:"";
+    const srcAiprort = (props.data.data) ? props.data.data.Source : "";
+    const destAiprort = (props.data.data) ? props.data.data.Destination : "";
     React.useEffect(() => {
-      
+
     }, []);
 
 
-  function getAirportCode(text, code) {
-    axios.request({
-      method: 'GET',
-      url: 'https://aerodatabox.p.rapidapi.com/airports/search/term',
-      params: {
-        q: `${text}`,
-        limit: '10'
-      },
-      headers: {
-        'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
-        'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
-      }
-  }).then( function (response) {
-      // console.log(response.data.items[0].iata);
-      if(code==="src"){
-        setSrcCode(response.data.items[0].iata);
-      }
-      else{
-        setDestCode(response.data.items[0].iata);
-      }
-    }).catch(function (error) {
-      console.error(error);
-    });
-  }
-
-    
-    
+    function getAirportCode(text, code) {
+      axios.request({
+        method: 'GET',
+        url: 'https://aerodatabox.p.rapidapi.com/airports/search/term',
+        params: {
+          q: `${text}`,
+          limit: '10'
+        },
+        headers: {
+          'X-RapidAPI-Key': 'eae621fa64msh38da454e381a490p144e25jsnf56d14a1ff1e',
+          'X-RapidAPI-Host': 'aerodatabox.p.rapidapi.com'
+        }
+      }).then(function (response) {
+        // console.log(response.data.items[0].iata);
+        if (code === "src") {
+          setSrcCode(response.data.items[0].iata);
+        }
+        else {
+          setDestCode(response.data.items[0].iata);
+        }
+      }).catch(function (error) {
+        console.error(error);
+      });
+    }
 
     // getAirportCode(srcAiprort, "src");
     //   getAirportCode(destAiprort, "dest");
@@ -73,7 +70,7 @@ export default function TravelCard(props) {
     // props.data.data.Source=srcCode;
     // props.data.data.Destination=destCode;
     return (
-      
+
       <Card sx={{ maxWidth: 345 }} style={{
         backgroundColor: '#8F5A3A',
         width: '100%',
@@ -81,25 +78,25 @@ export default function TravelCard(props) {
       }}
         className={t.div}
       >
-        <Link to="/flights" state={props.data}  style={{
-        textDecoration: 'none',
-          }}>
-        <IconButton name="flight_takeoff"
-          className={t.ico} onClick={handleIconClicks("flight_takeoff")}
-        >
-          <FlightIcon style={{
-            color: '#ffffff',
-            fontSize: '100px',
-          }} />
-        </IconButton>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            <h1 className={t.h1}>Take a Flight!</h1>
-            <p className={t.p}>Have a safe flight!</p>
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-        </CardActions>
+        <Link to="/flights" state={props.data} style={{
+          textDecoration: 'none',
+        }}>
+          <IconButton name="flight_takeoff"
+            className={t.ico} onClick={handleIconClicks("flight_takeoff")}
+          >
+            <FlightIcon style={{
+              color: '#ffffff',
+              fontSize: '100px',
+            }} />
+          </IconButton>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              <h1 className={t.h1}>Take a Flight!</h1>
+              <p className={t.p}>Have a safe flight!</p>
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+          </CardActions>
         </Link>
       </Card >
     );
@@ -114,29 +111,29 @@ export default function TravelCard(props) {
         height: '80%',
       }}
         className={t.div}>
-      <Link to="/trains" state={props.data.data} style={
-        {
-          textDecoration: 'none',
-        }
-      }>
+        <Link to="/trains" state={props.data.data} style={
+          {
+            textDecoration: 'none',
+          }
+        }>
 
-        <IconButton className={t.ico}>
-          <DirectionsSubwayFilledIcon style={{
-            color: '#ffffff',
-            fontSize: '100px',
-          }} />
-        </IconButton>
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            <h1 className={t.h1}>Take a Train!</h1>
-            <p className={t.p}>Have a safe journey!</p>
-          </Typography>
-        </CardContent>
+          <IconButton className={t.ico}>
+            <DirectionsSubwayFilledIcon style={{
+              color: '#ffffff',
+              fontSize: '100px',
+            }} />
+          </IconButton>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              <h1 className={t.h1}>Take a Train!</h1>
+              <p className={t.p}>Have a safe journey!</p>
+            </Typography>
+          </CardContent>
 
 
-        <CardActions disableSpacing>
-        </CardActions>
-      </Link>
+          <CardActions disableSpacing>
+          </CardActions>
+        </Link>
       </Card>
     );
   }
